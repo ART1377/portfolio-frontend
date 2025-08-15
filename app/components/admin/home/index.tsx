@@ -21,7 +21,7 @@ export default function AdminDashboard() {
   //   ]);
 
   return (
-    <div>admin</div>
+    <div>admin sub page</div>
     // <AdminDashboardContent
     //   projects={projects}
     //   skills={skills}
