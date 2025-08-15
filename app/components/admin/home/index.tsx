@@ -7,7 +7,8 @@ import { fetchSubmissions } from "@/app/lib/fetch/admin/fetchSubmissions";
 import { fetchAboutData } from "@/app/lib/fetch/fetchAbout";
 import AdminDashboardContent from "./content";
 
-
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function AdminDashboard() {
   const [projects, skills, experienceData, contactInfo, submissions, aboutData] =
