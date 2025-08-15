@@ -4,9 +4,10 @@ import React, { Suspense } from "react";
 
 const AdminDashboardPage = () => {
   return (
-    <Suspense fallback={<AdminDashboardSkeleton />}>
-      <AdminDashboard />
-    </Suspense>
+    <div>admin main page</div>
+    // <Suspense fallback={<AdminDashboardSkeleton />}>
+    //   <AdminDashboard />
+    // </Suspense>
   );
 };
 

@@ -9,7 +9,7 @@
 
 
 
-export default async function AdminDashboard() {
+export default function AdminDashboard() {
   // const [projects, skills, experienceData, contactInfo, submissions, aboutData] =
   //   await Promise.all([
   //     fetchProjects(),
