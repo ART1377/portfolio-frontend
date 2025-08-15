@@ -1,0 +1,55 @@
+{
+  "title": "Theme Settings",
+  "description": "Choose your preferred color scheme",
+  "active": "Active",
+  "preference_note": "Theme preference is saved locally",
+  "random": "Random",
+  "colors": "Colors",
+  "mode": "Mode",
+  "available": "available",
+  "current": "Current",
+  "display_mode": "Display Mode",
+  "color_schemes": "Color Schemes",
+  "color_description": "Choose your favorite color palette",
+  "current_scheme": "Current",
+  "theme_count": "{{count}} themes",
+  "schemes": {
+    "blue": {
+      "name": "Ocean Blue",
+      "description": "Cool and professional ocean vibes"
+    },
+    "purple": {
+      "name": "Royal Purple",
+      "description": "Elegant and creative royal theme"
+    },
+    "green": {
+      "name": "Forest Green",
+      "description": "Natural and calming forest theme"
+    },
+    "orange": {
+      "name": "Sunset Orange",
+      "description": "Warm and energetic sunset vibes"
+    },
+    "pink": {
+      "name": "Cherry Blossom",
+      "description": "Soft and romantic cherry theme"
+    },
+    "teal": {
+      "name": "Tropical Teal",
+      "description": "Fresh and modern tropical theme"
+    },
+    "indigo": {
+      "name": "Midnight Indigo",
+      "description": "Deep and mysterious midnight theme"
+    },
+    "amber": {
+      "name": "Golden Amber",
+      "description": "Rich and luxurious golden theme"
+    }
+  },
+  "options": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "adminLogin": "ورود ادمین",
+  "enterPassword": "رمز عبور ادمین را وارد کنید",
+  "invalidPassword": "رمز عبور نامعتبر است",
+  "loginButton": "ورود",
+  "showPassword": "نمایش رمز عبور",
+  "hidePassword": "مخفی کردن رمز عبور",
+  "logout": "خروج",
+  "logout_confirm_title": "آیا مطمئن هستید که می‌خواهید خارج شوید؟",
+  "logout_confirm_description": "به صفحه ورود هدایت خواهید شد و باید دوباره احراز هویت کنید.",
+  "cancel": "انصراف",
+  "confirm_logout": "خروج",
+  "credentialsInfo": "لطفاً اطلاعات خود را برای دسترسی به پنل مدیریت وارد کنید",
+  "passwordLabel": "رمز عبور",
+  "secureAccessInfo": "دسترسی امن به مدیریت • محافظت شده با رمزگذاری",
+  "usernameLabel": "نام کاربری",
+  "enterUsername": "نام کاربری خود را وارد کنید",
+  "errors": {
+    "INVALID_CREDENTIALS": "نام کاربری یا رمز عبور اشتباه است.",
+    "INTERNAL_ERROR": "خطای داخلی سرور، لطفاً بعداً دوباره تلاش کنید.",
+    "UNKNOWN_ERROR": "خطای غیرمنتظره‌ای رخ داده است."
+  }
+}

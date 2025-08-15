@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "ImageUploadSuccess": "Image uploaded successfully!",
+    "ImageUploadError": "Failed to upload image.",
+    "Uploading": "Uploading...",
+    "ReplaceImage": "Replace image",
+    "UploadProjectImage": "Upload project image",
+    "DragDropOrClick": "Drag and drop or click to browse",
+    "FileFormats": "PNG, JPG, GIF up to 10MB",
+    "ProjectImageAlt": "Project image",
+    "ImageDeleteSuccess": "Image deleted successfully!",
+    "ImageDeleteError": "Failed to delete image."
+  }
+}

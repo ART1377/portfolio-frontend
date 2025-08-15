@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./font.css";
+
+@layer base {
+  :root {
+    --font-en: "Inter", sans-serif;
+    --font-fa: "Vazirmatn", sans-serif;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 214 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 214 100% 50%;
+    --radius: 0.5rem;
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(214 100% 60%),
+      hsl(214 100% 40%)
+    );
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 214 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 30.5%;
+    --ring: 214 100% 50%;
+    --shadow-lg: 0 10px 15px rgba(255, 255, 255, 0.07),
+      0 4px 6px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Color Scheme Variations */
+  [data-color-scheme="blue"] {
+    --primary: 214 100% 50%;
+    --ring: 214 100% 50%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(214 100% 60%),
+      hsl(214 100% 40%)
+    );
+  }
+
+  [data-color-scheme="purple"] {
+    --primary: 262 83% 58%;
+    --ring: 262 83% 58%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(262 83% 65%),
+      hsl(262 83% 48%)
+    );
+  }
+
+  [data-color-scheme="green"] {
+    --primary: 142 76% 36%;
+    --ring: 142 76% 36%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(142 76% 46%),
+      hsl(142 76% 30%)
+    );
+  }
+
+  [data-color-scheme="orange"] {
+    --primary: 25 95% 53%;
+    --ring: 25 95% 53%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(25 95% 60%),
+      hsl(25 95% 45%)
+    );
+  }
+
+  [data-color-scheme="pink"] {
+    --primary: 330 81% 60%;
+    --ring: 330 81% 60%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(330 81% 68%),
+      hsl(330 81% 52%)
+    );
+  }
+
+  [data-color-scheme="teal"] {
+    --primary: 173 80% 40%;
+    --ring: 173 80% 40%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(173 80% 50%),
+      hsl(173 80% 35%)
+    );
+  }
+
+  [data-color-scheme="indigo"] {
+    --primary: 239 84% 67%;
+    --ring: 239 84% 67%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(239 84% 72%),
+      hsl(239 84% 58%)
+    );
+  }
+
+  [data-color-scheme="amber"] {
+    --primary: 45 93% 47%;
+    --primary-foreground: 0 0% 0%;
+    --ring: 45 93% 47%;
+    --primary-gradient: linear-gradient(
+      135deg,
+      hsl(45 93% 55%),
+      hsl(45 93% 42%)
+    );
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Smooth transitions for color scheme changes */
+* {
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* custom classes */
+.section-container {
+  max-width: 80rem; /* max-w-7xl = 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 1rem;
+  overflow-x: hidden;
+
+  @media (min-width: 768px) {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+/* Default font for LTR (English) */
+html[dir="ltr"] {
+  font-family: "Roboto", "iran-sans";
+}
+
+/* Font for RTL (Persian) */
+html[dir="rtl"] {
+  font-family: "iran-sans";
+}
+
+.bg-primary-gradient {
+  background-image: var(--primary-gradient);
+}

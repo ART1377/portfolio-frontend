@@ -1,0 +1,17 @@
+{
+  "title": "Get In Touch",
+  "description": "I'm always interested in new opportunities and exciting projects. Let's discuss how we can work together!",
+  "formTitle": "Send me a message",
+  "formDescription": "Fill out the form below and I'll get back to you as soon as possible.",
+  "name": "Your Name",
+  "email": "Your Email",
+  "subject": "Subject",
+  "message": "Your Message",
+  "submit": "Send Message",
+  "success": "Form submitted successfully.",
+  "error": "Failed to submit form.",
+  "contactInfoTitle": "Contact Information",
+  "followMeTitle": "Follow Me",
+  "ctaTitle": "Let's collaborate!",
+  "ctaDescription": "I'm currently available for freelance projects and full-time opportunities. Whether you have a project in mind or just want to chat about technology, I'd love to hear from you."
+}

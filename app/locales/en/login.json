@@ -1,0 +1,23 @@
+{
+  "adminLogin": "Admin Login",
+  "enterPassword": "Enter admin password",
+  "invalidPassword": "Invalid password",
+  "loginButton": "Login",
+  "showPassword": "Show password",
+  "hidePassword": "Hide password",
+  "logout": "Logout",
+  "logout_confirm_title": "Are you sure you want to logout?",
+  "logout_confirm_description": "You will be redirected to the login page and will need to authenticate again.",
+  "cancel": "Cancel",
+  "confirm_logout": "Logout",
+  "credentialsInfo": "Enter your credentials to access the admin panel",
+  "passwordLabel": "Password",
+  "secureAccessInfo": "Secure admin access • Protected by encryption",
+  "usernameLabel": "Username",
+  "enterUsername": "Enter your username",
+  "errors": {
+    "INVALID_CREDENTIALS": "Invalid username or password.",
+    "INTERNAL_ERROR": "Internal server error, please try again later.",
+    "UNKNOWN_ERROR": "An unexpected error occurred."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "dashboard": "Dashboard",
+  "submission": "Submission",
+  "contactInfo": "Contact Info",
+  "contact": "Contact",
+  "hero": "Hero",
+  "about": "About",
+  "skills": "Skills",
+  "projects": "Projects",
+  "experiences": "Experiences",
+  "suggestions": "Suggestions",
+  "name": "Alex Johnson",
+  "adminPanel": "Admin Panel",
+  "managementDashboard": "Management Dashboard",
+  "adminName": "Admin User",
+  "adminEmail": "admin@example.com"
+}

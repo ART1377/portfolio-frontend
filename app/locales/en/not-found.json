@@ -1,0 +1,13 @@
+{
+  "errorCode": "Error 404",
+  "title": "Page not found",
+  "description": "The page you’re looking for doesn’t exist or may have been moved.",
+  "goHome": "Go to Home",
+  "contactSupport": "Contact support",
+  "checkUrlTitle": "Check the URL",
+  "checkUrlDescription": "Make sure there are no typos in the address bar.",
+  "headBackTitle": "Head back home",
+  "headBackDescription": "Start from the homepage and navigate to what you need.",
+  "srMessage": "Use the Home button to return to the main page.",
+  "refreshPage": "Refresh Page"
+}
