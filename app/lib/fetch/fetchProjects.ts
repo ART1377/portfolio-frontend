@@ -4,7 +4,7 @@ export async function fetchProjects(lang: Lang = "en") {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/projects?lang=${lang}`,
     {
-      cache: "force-cache",
+      cache: "no-store",
       next: { tags: ["projects"] },
     }
   );
