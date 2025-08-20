@@ -1,14 +1,20 @@
-export const uploadImage = async (file: File): Promise<string> => {
+// lib/utils/upload/image.ts
+export const uploadImage = async (
+  file: File,
+  projectId?: string
+): Promise<string> => {
   const formData = new FormData();
   formData.append("image", file);
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/image/upload`, // note the /api here
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
+  let url = `${process.env.NEXT_PUBLIC_API_URL}/image/upload`;
+  if (projectId) {
+    url += `?projectId=${projectId}`;
+  }
+
+  const res = await fetch(url, {
+    method: "POST",
+    body: formData,
+  });
 
   if (!res.ok) throw new Error("Image upload failed");
 
@@ -16,20 +22,24 @@ export const uploadImage = async (file: File): Promise<string> => {
   return data.imageUrl;
 };
 
-
-export async function deleteImage(imageUrl: string): Promise<void> {
+export async function deleteImage(
+  imageUrl: string,
+  projectId?: string
+): Promise<void> {
   const imagePath = imageUrl.replace("http://localhost:4000", "");
+
+  const body: any = { path: imagePath };
+  if (projectId) {
+    body.projectId = projectId;
+  }
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/image/delete`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ path: imagePath }),
+    body: JSON.stringify(body),
   });
 
   if (!res.ok) {
     throw new Error("Failed to delete image");
   }
-
-  // Optionally, revalidate your cache or paths if using ISR
-  // revalidatePath('/projects');
 }

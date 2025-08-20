@@ -80,7 +80,7 @@ export default function HeroForm({
           <div>
             <Label>{t("hero.Roles")}</Label>
             <Input
-              value={form.roles.join(", ")}
+              value={form.roles}
               onChange={onRolesChange}
               placeholder={t("hero.RolesPlaceholder") || ""}
               className="bg-white"

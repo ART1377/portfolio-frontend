@@ -1,3 +1,4 @@
+// components/ImageUpload.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -8,13 +9,10 @@ import { cn } from "@/app/lib/utils/cn/cn";
 import { Project } from "@/app/types/shared/project/project";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
-import { deleteImage } from "@/app/lib/utils/upload/image";
+import { deleteImage, uploadImage } from "@/app/lib/utils/upload/image";
 
 interface ImageUploadProps {
-  project: {
-    title: string;
-    image: string;
-  };
+  project: Project;
   idx: number;
   baseId: string;
   handleChange: <K extends keyof Project>(
@@ -22,8 +20,7 @@ interface ImageUploadProps {
     field: K,
     value: Project[K]
   ) => void;
-  uploadImage: (file: File) => Promise<string>;
-  handleSave: () => Promise<void>; // <-- NEW: pass handleSave here
+  handleSave: () => Promise<void>;
 }
 
 export function ImageUpload({
@@ -31,11 +28,9 @@ export function ImageUpload({
   idx,
   baseId,
   handleChange,
-  uploadImage,
-  handleSave, // <-- destructure handleSave
+  handleSave,
 }: ImageUploadProps) {
   const { t } = useTranslation("imageUploader");
-
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -48,9 +43,11 @@ export function ImageUpload({
     handleChange(idx, "image", localPreviewUrl);
 
     try {
-      const uploadedUrl = await uploadImage(file);
+      // Use project ID if available (not "new"), otherwise pass undefined
+      const projectId = project.id !== "new" ? project.id : undefined;
+      const uploadedUrl = await uploadImage(file, projectId);
       handleChange(idx, "image", uploadedUrl);
-      await handleSave(); // <-- save after successful upload
+      await handleSave(); // Save after successful upload
       toast.success(t("projects.ImageUploadSuccess"));
     } catch {
       toast.error(t("projects.ImageUploadError"));
@@ -81,7 +78,9 @@ export function ImageUpload({
   const removeImage = async () => {
     if (project.image && !project.image.startsWith("blob:")) {
       try {
-        await deleteImage(project.image);
+        // Use project ID if available (not "new"), otherwise pass undefined
+        const projectId = project.id !== "new" ? project.id : undefined;
+        await deleteImage(project.image, projectId);
         toast.success(t("projects.ImageDeleteSuccess"));
       } catch {
         toast.error(t("projects.ImageDeleteError"));
@@ -90,6 +89,7 @@ export function ImageUpload({
     handleChange(idx, "image", "");
     await handleSave();
   };
+
   return (
     <div className="space-y-4">
       {/* Show image preview ONLY if image exists */}
@@ -97,15 +97,15 @@ export function ImageUpload({
         <div className="relative group">
           <div className="relative w-full h-full rounded-xl overflow-hidden border-2 border-border bg-muted min-h-56">
             {project.image.length > 0 && (
-            <Image
+              <Image
                 src={
                   project.image.startsWith("blob:")
                     ? project.image
-                    : `http://localhost:4000${project.image}` // note the "/" before ${project.image}
+                    : `${process.env.NEXT_PUBLIC_API_URL}${project.image}`
                 }
                 alt={project.title || t("projects.ProjectImageAlt")}
                 fill
-                className="object-fill transition-all duration-300 group-hover:scale-105"
+                className="object-cover transition-all duration-300 group-hover:scale-105"
               />
             )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />

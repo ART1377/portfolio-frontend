@@ -1,3 +1,4 @@
+// hooks/useProjectsEditor.ts
 "use client";
 
 import { useEffect, useState } from "react";
@@ -10,7 +11,6 @@ import { useLang } from "@/app/context/langContext";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useTranslation } from "react-i18next";
-import { v4 as uuidv4 } from "uuid";
 
 export function useProjectsEditor() {
   const { lang } = useLang();
@@ -50,7 +50,7 @@ export function useProjectsEditor() {
     setProjects((prev) => [
       ...(prev || []),
       {
-        id: uuidv4(),
+        id: "new", // Use "new" for frontend-created projects that don't have DB ID yet
         title: "New Project",
         description: "",
         image: "",
