@@ -1,6 +1,6 @@
 import React from "react";
 import SubmissionRow from "./row";
-import { Submission } from "@/app/types/submission/submission";
+import { Submission } from "@/app/types/shared/submission/submission";
 import { useTranslation } from "react-i18next";
 
 type Props = {

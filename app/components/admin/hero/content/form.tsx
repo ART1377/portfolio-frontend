@@ -36,13 +36,13 @@ export default function HeroForm({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Personal Information */}
-     <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
-  <CardHeader>
-    <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
-      <User className="h-5 w-5 text-[hsl(var(--primary))]" />
-      {t("hero.PersonalInfo")}
-    </CardTitle>
-  </CardHeader>
+      <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
+            <User className="h-5 w-5 text-[hsl(var(--primary))]" />
+            {t("hero.PersonalInfo")}
+          </CardTitle>
+        </CardHeader>
         <CardContent className="space-y-4">
           <div>
             <Label>{t("hero.Name")}</Label>
@@ -69,13 +69,13 @@ export default function HeroForm({
       </Card>
 
       {/* Professional Info */}
-  <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
-  <CardHeader>
-    <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
-      <Briefcase className="h-5 w-5 text-[hsl(var(--primary))]" />
-      {t("hero.ProfessionalDetails")}
-    </CardTitle>
-  </CardHeader>
+      <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
+            <Briefcase className="h-5 w-5 text-[hsl(var(--primary))]" />
+            {t("hero.ProfessionalDetails")}
+          </CardTitle>
+        </CardHeader>
         <CardContent className="space-y-4">
           <div>
             <Label>{t("hero.Roles")}</Label>
@@ -101,11 +101,7 @@ export default function HeroForm({
 
       {/* Save */}
       <div className="lg:col-span-2">
-        <Button
-          onClick={onSave}
-          disabled={isPending}
-          className="w-full"
-        >
+        <Button onClick={onSave} disabled={isPending} className="w-full">
           {isPending ? t("hero.Saving") : t("hero.Save")}
         </Button>
       </div>

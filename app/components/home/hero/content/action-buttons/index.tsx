@@ -1,14 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Download, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "@/app/components/ui/popover";
 import { DownloadResumeButton } from "./download-resume";
 import { useTranslation } from "react-i18next";
 

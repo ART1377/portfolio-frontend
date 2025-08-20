@@ -1,6 +1,6 @@
 "use client";
 
-import { Submission } from "@/app/types/submission/submission";
+import { Submission } from "@/app/types/shared/submission/submission";
 import DeleteSubmissionButton from "./delete-button";
 import { useLang } from "@/app/context/langContext";
 import { formatJalaliDate } from "@/app/lib/utils/date/formatJalaliDate";
