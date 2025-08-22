@@ -21,6 +21,11 @@ export function HeroIntro({ hero }: HeroIntroProps) {
   const { t } = useTranslation("hero");
   const { lang } = useLang();
 
+  const rolesArray = hero.roles
+    ? (hero.roles as unknown as string).split(",").map((role) => role.trim())
+    : [];
+
+
   <motion.h1
     className="text-4xl md:text-6xl font-bold mb-4"
     variants={itemVariants}
@@ -50,7 +55,7 @@ export function HeroIntro({ hero }: HeroIntroProps) {
         variants={itemVariants}
       >
         <Typewriter
-          words={hero.roles}
+          words={rolesArray}
           typingSpeed={100}
           deletingSpeed={50}
           pauseTime={1000}
