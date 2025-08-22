@@ -6,7 +6,7 @@ import { jwtVerify } from "jose";
 async function verifyToken(token: string) {
   try {
     // IMPORTANT: use the same secret you sign with in backend
-    const secret = new TextEncoder().encode(process.env.NEXT_PUBLIC_JWT_SECRET);
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
     // verify token — throws if invalid or expired
     await jwtVerify(token, secret);
