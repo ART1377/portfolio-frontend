@@ -25,19 +25,16 @@ export async function middleware(request: NextRequest) {
   if (!pathname.startsWith("/admin")) {
     return NextResponse.next();
   }
-
-  console.log("test cookie", pathname);
-  console.log("start with", pathname.startsWith("/admin"));
   
   const token = request.cookies.get("token")?.value;
-  
+
   console.log('token' , token)
 
-  if (!token || !(await verifyToken(token))) {
-    const loginUrl = new URL("/auth/login", request.url);
-    loginUrl.searchParams.set("from", pathname); // preserve redirect path
-    return NextResponse.redirect(loginUrl);
-  }
+  // if (!token || !(await verifyToken(token))) {
+  //   const loginUrl = new URL("/auth/login", request.url);
+  //   loginUrl.searchParams.set("from", pathname); // preserve redirect path
+  //   return NextResponse.redirect(loginUrl);
+  // }
 
   return NextResponse.next();
 }
