@@ -99,9 +99,10 @@ export function ImageUpload({
             {project.image.length > 0 && (
               <Image
                 src={
-                  project.image?.startsWith("http")
+                  project.image.startsWith("blob:") ||
+                  project.image.startsWith("http")
                     ? project.image
-                    : `${process.env.NEXT_PUBLIC_API_URL}${project.image}` // for local paths if any
+                    : `${process.env.NEXT_PUBLIC_API_URL}${project.image}`
                 }
                 alt={project.title || t("projects.ProjectImageAlt")}
                 fill
