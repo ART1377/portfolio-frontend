@@ -79,6 +79,20 @@ export default function ResumeUploader({
                 if (e.target.files?.[0]) setResumeFile(lang, e.target.files[0]);
               }}
             />
+            {resumeFiles[lang] && (
+              <div className="flex items-center gap-2 mt-2 text-sm text-muted-foreground">
+                <FileText className="h-4 w-4" />
+                <span>{resumeFiles[lang]?.name}</span>
+                <a
+                  href={URL.createObjectURL(resumeFiles[lang]!)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary underline"
+                >
+                  {t("hero.Preview")}
+                </a>
+              </div>
+            )}
 
             <div className="flex gap-3 items-center">
               <Button
