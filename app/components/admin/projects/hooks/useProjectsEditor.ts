@@ -11,10 +11,12 @@ import { useLang } from "@/app/context/langContext";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function useProjectsEditor() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
+  const { token } = useAuth();
 
   const { data, error, isLoading, mutate } = useSWR<Project[]>(
     () => `/projects?lang=${lang}`,
@@ -71,7 +73,7 @@ export function useProjectsEditor() {
   const handleSave = async () => {
     if (!projects) return;
     try {
-      await updateProjects(projects, lang as Lang);
+      await updateProjects(projects, lang as Lang, token as string);
       mutate();
       toast.success(t("projects.UpdateSuccess"));
     } catch (error) {

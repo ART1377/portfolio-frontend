@@ -4,12 +4,19 @@ import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { revalidateTag } from "next/cache";
 
-export async function updateContactInfo(data: ContactInfo, lang: Lang) {
+export async function updateContactInfo(
+  data: ContactInfo,
+  lang: Lang,
+  token: string
+) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/contact-info?lang=${lang}`,
     {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(data),
     }
   );

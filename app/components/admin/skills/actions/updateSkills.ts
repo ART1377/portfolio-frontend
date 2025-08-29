@@ -5,13 +5,17 @@ import { revalidateTag } from "next/cache";
 
 export async function updateSkillsData(
   data: SkillCategory[],
-  lang: "en" | "fa"
+  lang: "en" | "fa",
+  token: string
 ) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/skills?lang=${lang}`,
     {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(data),
     }
   );

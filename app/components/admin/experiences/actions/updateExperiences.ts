@@ -6,13 +6,17 @@ import { Lang } from "@/app/types/shared/lang/lang";
 
 export async function updateExperiences(
   data: ExperienceData,
-  lang: Lang = "en"
+  lang: Lang = "en",
+  token: string
 ) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/experiences?lang=${lang}`,
     {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(data),
     }
   );

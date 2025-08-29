@@ -10,10 +10,13 @@ import { updateContactInfo } from "../actions/contactInfoActions";
 import { useLang } from "@/app/context/langContext";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function useContactInfoEditor() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
+  const { token } = useAuth();
+
 
   const { data, error, mutate, isLoading } = useSWR<ContactInfo>(
     () => (lang ? `/contact-info?lang=${lang}` : null),
@@ -66,7 +69,7 @@ export function useContactInfoEditor() {
 
     startTransition(async () => {
       try {
-        await updateContactInfo(formData, lang as Lang);
+        await updateContactInfo(formData, lang as Lang, token as string);
         toast.success(t("contact.UpdateSuccess"));
         mutate();
       } catch (err) {

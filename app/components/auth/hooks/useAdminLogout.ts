@@ -1,22 +1,20 @@
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { logoutAdmin } from "../actions/authActions";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function useAdminLogout() {
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const { logout } = useAuth(); // use context logout
 
-  async function logout() {
+  async function handleLogout() {
     setIsLoading(true);
     try {
-      await logoutAdmin();
+      logout(); // AuthProvider handles cookie + redirect
     } catch (error) {
       console.error("Logout failed", error);
     } finally {
       setIsLoading(false);
-      router.push("/auth/login");
     }
   }
 
-  return { logout, isLoading };
+  return { logout: handleLogout, isLoading };
 }

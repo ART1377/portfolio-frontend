@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { loginAdmin } from "../actions/authActions";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function useAdminLogin() {
   const { t } = useTranslation("login");
   const router = useRouter();
+  const { login } = useAuth();
 
   const [username, setUsername] = useState(""); // <-- new
   const [password, setPassword] = useState("");
@@ -19,7 +21,8 @@ export function useAdminLogin() {
     setError("");
 
     try {
-      await loginAdmin(username, password);  // <-- pass username and password
+      const data = await loginAdmin(username, password);
+      login(data.token);
       router.push("/admin");
     } catch (err: any) {
       let errorCode = "UNKNOWN_ERROR";
@@ -39,13 +42,13 @@ export function useAdminLogin() {
 
   return {
     t,
-    username,               // <-- expose username state
+    username, // <-- expose username state
     password,
     error,
     showPassword,
     isLoading,
     handleSubmit,
-    onUsernameChange: setUsername,  // <-- expose username setter
+    onUsernameChange: setUsername, // <-- expose username setter
     onPasswordChange: setPassword,
     toggleShowPassword: () => setShowPassword((v) => !v),
   };

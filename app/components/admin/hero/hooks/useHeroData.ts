@@ -8,10 +8,12 @@ import { Lang } from "@/app/types/shared/lang/lang";
 import { useLang } from "@/app/context/langContext";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function useHeroData() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
+  const { token } = useAuth();
 
   const { data, error, isLoading, mutate } = useSWR<HeroData>(
     () => `/hero?lang=${lang}`,
@@ -50,7 +52,7 @@ export function useHeroData() {
 
     startTransition(async () => {
       try {
-        await actions.updateHeroInfo(form);
+        await actions.updateHeroInfo(form, token as string);
         toast.success(t("hero.UpdateSuccess"));
         mutate();
       } catch (err) {

@@ -15,6 +15,7 @@ import {
   BookOpen,
   Settings,
   Sparkles,
+  HomeIcon,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/app/components/ui/sheet";
 import { Button } from "@/app/components/ui/button";
@@ -80,17 +81,19 @@ export function AdminNavigation() {
     <div className="flex flex-col h-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-3">
+        <Link href={"/"} className="flex items-center gap-3 cursor-pointer group">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-            <Settings className="w-4 h-4 text-primary-foreground" />
+            <HomeIcon className="w-4 h-4 text-primary-foreground" />
           </div>
           <div>
-            <h2 className="font-semibold text-lg">{t("adminPanel")}</h2>
-            <p className="text-xs text-muted-foreground">
-              {t("managementDashboard")}
+            <p className="font-semibold text-lg group-hover:text-primary">
+              {t("hero")}
+            </p>
+            <p className="text-xs text-muted-foreground group-hover:text-primary">
+              {t("siteHomePage")}
             </p>
           </div>
-        </div>
+        </Link>
       </div>
 
       <Separator className="mb-6" />
@@ -194,7 +197,9 @@ export function AdminNavigation() {
                 <div className="w-6 h-6 rounded bg-primary flex items-center justify-center">
                   <Settings className="w-3 h-3 text-primary-foreground" />
                 </div>
-                <span className="font-semibold">{t("adminPanel")}</span>
+                <Link href={"/admin"} className="font-semibold">
+                  {t("adminPanel")}
+                </Link>
               </div>
             </div>
             <div className="flex items-center gap-2">

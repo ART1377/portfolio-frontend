@@ -9,10 +9,12 @@ import { updateAboutData } from "../actions/aboutActions";
 import { useLang } from "@/app/context/langContext";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function useAboutForm() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
+  const { token } = useAuth();
 
   const { data, error, isLoading, mutate } = useSWR<AboutData>(
     () => `/about?lang=${lang}`,
@@ -102,7 +104,7 @@ export function useAboutForm() {
     if (!form) return;
     startTransition(async () => {
       try {
-        await updateAboutData(form, lang as Lang);
+        await updateAboutData(form, lang as Lang, token as string);
         toast.success(t("about.UpdateSuccess"));
         mutate();
       } catch {

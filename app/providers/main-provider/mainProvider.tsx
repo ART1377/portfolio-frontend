@@ -14,6 +14,7 @@ import { Toaster } from "react-hot-toast";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/app/lib/language/i18n";
 import { LangProvider } from "@/app/context/langContext";
+import { AuthProvider } from "@/app/context/AuthContext";
 
 type Props = {
   children: React.ReactNode;
@@ -35,7 +36,7 @@ const MainProvider = ({ children }: Props) => {
               {/* <ParallaxParticles /> */}
               <ThemeTransition />
               {/* <ReadingTime /> */}
-              {children}
+              <AuthProvider>{children}</AuthProvider>
               <ScrollToTop />
               <EnhancedThemeSettings />
               <ColorSchemePicker />

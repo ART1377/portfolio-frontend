@@ -8,10 +8,12 @@ import { fetchExperiencesClient } from "@/app/lib/fetch/fetchExperiences";
 import { Lang } from "@/app/types/shared/lang/lang";
 import { useTranslation } from "react-i18next";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
+import { useAuth } from "@/app/context/AuthContext";
 
 export function useExperienceForm() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
+  const { token } = useAuth();
 
   const { data, error, isLoading, mutate } = useSWR<ExperienceData>(
     () => `/experience?lang=${lang}`,
@@ -67,7 +69,7 @@ export function useExperienceForm() {
   const handleSave = async () => {
     if (!formData) return;
     try {
-      await updateExperiences(formData, lang as Lang);
+      await updateExperiences(formData, lang as Lang, token as string);
       mutate();
       toast.success(t("experience.UpdateSuccess"));
     } catch {

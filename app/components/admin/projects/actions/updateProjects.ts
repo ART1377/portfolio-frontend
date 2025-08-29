@@ -4,12 +4,19 @@ import { Project } from "@/app/types/shared/project/project";
 import { revalidateTag } from "next/cache";
 import { Lang } from "@/app/types/shared/lang/lang";
 
-export async function updateProjects(data: Project[], lang: Lang) {
+export async function updateProjects(
+  data: Project[],
+  lang: Lang,
+  token: string
+) {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/projects?lang=${lang}`,
     {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify(data),
     }
   );

@@ -10,11 +10,9 @@ import { useTranslation } from "react-i18next";
 import { addSuggestion, deleteSuggestion } from "../actions/suggestionsActions";
 import { Suggestion } from "@/app/types/shared/suggestion/suggestion";
 import { useKeyPressHandler } from "@/app/hooks/useKeyPressHandler";
-import {
-  Card,
-  CardContent
-} from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import AdminSectionHeader from "../../admin-section-header";
+import { useAuth } from "@/app/context/AuthContext";
 
 export default function SuggestionsEditor({
   initialSuggestions,
@@ -22,6 +20,8 @@ export default function SuggestionsEditor({
   initialSuggestions: Suggestion[];
 }) {
   const { t } = useTranslation("dashboard");
+  const { token } = useAuth();
+
   const [suggestions, setSuggestions] =
     useState<Suggestion[]>(initialSuggestions);
   const [newName, setNewName] = useState("");
@@ -41,7 +41,7 @@ export default function SuggestionsEditor({
   const handleAdd = () => {
     if (!newName.trim()) return;
     startTransition(async () => {
-      const promise = addSuggestion(newName).then((added) => {
+      const promise = addSuggestion(newName, token as string).then((added) => {
         setSuggestions((prev) => [...prev, added]);
         setNewName("");
       });
@@ -56,7 +56,7 @@ export default function SuggestionsEditor({
 
   const handleDelete = (id: string) => {
     startTransition(async () => {
-      const promise = deleteSuggestion(id).then(() => {
+      const promise = deleteSuggestion(id, token as string).then(() => {
         setSuggestions((prev) => prev.filter((s) => s.id !== id));
       });
 

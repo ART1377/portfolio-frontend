@@ -18,10 +18,12 @@ import toast from "react-hot-toast";
 import { Trash2, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useClickOutside } from "@/app/hooks/useClickOutside";
+import { useAuth } from "@/app/context/AuthContext";
 
 export default function DeleteSubmissionButton({ id }: { id: number }) {
   const [isPending, startTransition] = useTransition();
   const { t } = useTranslation("dashboard");
+  const { token } = useAuth();
 
   const [open, setOpen] = useState(false);
   const dialogRef = useRef<HTMLDivElement | null>(null);
@@ -31,7 +33,7 @@ export default function DeleteSubmissionButton({ id }: { id: number }) {
   const handleDelete = () => {
     startTransition(async () => {
       try {
-        await deleteSubmissionById(id);
+        await deleteSubmissionById(id, token as string);
         toast.success(t("submissions.DeleteSuccess"));
       } catch (error) {
         toast.error(t("submissions.DeleteFail"));
