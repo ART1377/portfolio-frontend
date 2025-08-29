@@ -153,7 +153,6 @@ export default function ProjectsEditor() {
                         idx={idx}
                         baseId={baseId}
                         handleChange={handleChange}
-                        uploadImage={uploadImage}
                         handleSave={handleSave}
                       />
                     </div>
