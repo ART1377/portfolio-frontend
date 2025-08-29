@@ -68,9 +68,9 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
         >
           <Image
             src={
-              project.image
-                ? `${process.env.NEXT_PUBLIC_API_URL}${project.image}`
-                : "/placeholder.svg"
+              project.image?.startsWith("http")
+                ? project.image
+                : `${process.env.NEXT_PUBLIC_API_URL}${project.image}` // for local paths if any
             }
             alt={project.title}
             fill
