@@ -76,6 +76,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
             fill
             className="object-cover transition-transform group-hover:scale-110 duration-300"
           />
+          <div>{project.image}</div>
           <motion.div
             className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
             initial={{ opacity: 0 }}
