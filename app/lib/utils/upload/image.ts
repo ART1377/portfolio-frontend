@@ -22,33 +22,13 @@ export const uploadImage = async (
   return data.imageUrl;
 };
 
-export async function deleteImage(
-  imageUrl: string,
-  projectId?: string
-): Promise<void> {
-  const imagePath = imageUrl.replace("http://localhost:4000", "");
-
-  const body: any = { path: imagePath };
-  if (projectId) {
-    body.projectId = projectId;
-  }
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/image/delete`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    throw new Error("Failed to delete image");
-  }
-}
-
 // export async function deleteImage(
 //   imageUrl: string,
 //   projectId?: string
 // ): Promise<void> {
-//   const body: any = { imageUrl };
+//   const imagePath = imageUrl.replace("http://localhost:4000", "");
+
+//   const body: any = { path: imagePath };
 //   if (projectId) {
 //     body.projectId = projectId;
 //   }
@@ -63,4 +43,24 @@ export async function deleteImage(
 //     throw new Error("Failed to delete image");
 //   }
 // }
+
+export async function deleteImage(
+  imageUrl: string,
+  projectId?: string
+): Promise<void> {
+  const body: any = { imageUrl };
+  if (projectId) {
+    body.projectId = projectId;
+  }
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/image/delete`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to delete image");
+  }
+}
 
