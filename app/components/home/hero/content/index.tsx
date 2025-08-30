@@ -29,6 +29,7 @@ export function HeroContent({ hero }: HeroContentProps) {
     <section
       id="home"
       className="min-h-screen flex items-center justify-center pt-16 relative"
+      aria-labelledby="hero-heading"
     >
       <ParallaxHero />
       <motion.div
@@ -37,6 +38,9 @@ export function HeroContent({ hero }: HeroContentProps) {
         initial="hidden"
         animate="visible"
       >
+        <h1 id="hero-heading" className="sr-only">
+          Welcome to my portfolio
+        </h1>
         <HeroIntro hero={hero} />
         <HeroActions />
         <HeroSocials socials={hero.socials} />

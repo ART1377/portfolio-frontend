@@ -83,6 +83,8 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
     <motion.div
       variants={cardVariants as any}
       className="transform hover:-translate-y-3 transition-transform duration-300 ease-in-out"
+      aria-label={`Skill category: ${category.title}`}
+      tabIndex={0}
     >
       <Card
         className="h-full flex flex-col bg-card/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow transition-all duration-300 border border-transparent"
@@ -101,12 +103,22 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
             transition={{ duration: 0.7, delay: 0.4 + index * 0.1 }}
           >
-            {Icon && <Icon className="w-12 h-12 text-primary mb-4" />}
+            {Icon && (
+              <Icon
+                className="w-12 h-12 text-primary mb-4"
+                aria-hidden="true"
+                focusable="false"
+              />
+            )}
             <h3 className="text-3xl font-extrabold text-foreground leading-tight">
               {category.title}
             </h3>
           </motion.div>
-          <div className="space-y-5 flex-1">
+          <div
+            className="space-y-5 flex-1"
+            role="list"
+            aria-label={`Skills in ${category.title}`}
+          >
             {category.skills.map((skill, skillIndex) => (
               <motion.div
                 key={skillIndex}
@@ -118,6 +130,7 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
                   duration: 0.7,
                   delay: 0.6 + index * 0.1 + skillIndex * 0.07,
                 }}
+                role="listitem"
               >
                 <div className="flex justify-between items-end mb-1">
                   <span className="text-lg font-medium text-foreground">
@@ -127,7 +140,14 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
                     {skill.level}%
                   </span>
                 </div>
-                <div className="w-full bg-muted-foreground/30 rounded-full h-2.5 overflow-hidden">
+                <div
+                  className="w-full bg-muted-foreground/30 rounded-full h-2.5 overflow-hidden"
+                  aria-label={`${skill.name} proficiency`}
+                  role="progressbar"
+                  aria-valuenow={skill.level}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                >
                   <motion.div
                     className="bg-gradient-to-r from-primary to-primary/70 h-full rounded-full shadow-sm"
                     initial={{ width: 0 }}
