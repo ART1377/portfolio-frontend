@@ -2,7 +2,7 @@ export async function fetchSuggestions(): Promise<
   { id: string; name: string }[]
 > {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/suggestions`, {
-    cache: "no-store",
+    cache: "force-cache",
     next: { tags: ["suggestion"] },
   });
 

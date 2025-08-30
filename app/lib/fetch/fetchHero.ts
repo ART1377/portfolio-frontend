@@ -2,7 +2,7 @@ export async function fetchHeroData(lang = "en") {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/hero?lang=${lang}`,
     {
-      cache: "no-store",
+      cache: "force-cache",
       next: { tags: ["hero"] },
     }
   );

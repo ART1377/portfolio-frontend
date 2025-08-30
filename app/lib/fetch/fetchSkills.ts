@@ -2,7 +2,7 @@ export async function fetchSkills(lang = "en") {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/skills?lang=${lang}`,
     {
-      cache: "no-store",
+      cache: "force-cache",
       next: { tags: ["skills"] },
     }
   );

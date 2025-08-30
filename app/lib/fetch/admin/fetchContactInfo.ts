@@ -2,7 +2,7 @@ export async function fetchContactInfo(lang: "en" | "fa" = "en") {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/contact-info?lang=${lang}`,
     {
-      cache: "no-store",
+      cache: "force-cache",
       next: { tags: ["contact-info"] },
     }
   );
