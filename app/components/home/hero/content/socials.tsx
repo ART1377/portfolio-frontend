@@ -18,25 +18,47 @@ interface HeroSocialsProps {
 
 export function HeroSocials({ socials }: HeroSocialsProps) {
   return (
-    <motion.div className="flex justify-center gap-6 mb-12" variants={itemVariants}>
-      <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-        <a href={socials.github} target="_blank" rel="noopener noreferrer">
+    <motion.div
+      className="flex justify-center gap-6 mb-12"
+      variants={itemVariants}
+    >
+      <motion.div
+        whileHover={{ scale: 1.2, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <a
+          href={socials.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit my GitHub profile"
+        >
           <Button variant="ghost" size="icon">
-            <Github className="h-5 w-5" />
+            <Github className="h-5 w-5" aria-hidden="true" />
           </Button>
         </a>
       </motion.div>
-      <motion.div whileHover={{ scale: 1.2, rotate: -5 }} whileTap={{ scale: 0.9 }}>
-        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">
+      <motion.div
+        whileHover={{ scale: 1.2, rotate: -5 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <a
+          href={socials.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Connect with me on LinkedIn"
+        >
           <Button variant="ghost" size="icon">
-            <Linkedin className="h-5 w-5" />
+            <Linkedin className="h-5 w-5" aria-hidden="true" />
           </Button>
         </a>
       </motion.div>
-      <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-        <a href={socials.email}>
+      <motion.div
+        whileHover={{ scale: 1.2, rotate: 5 }}
+        whileTap={{ scale: 0.9 }}
+      >
+        <a href={socials.email} aria-label="Send me an email">
           <Button variant="ghost" size="icon">
-            <Mail className="h-5 w-5" />
+            <Mail className="h-5 w-5" aria-hidden="true" />
           </Button>
         </a>
       </motion.div>
