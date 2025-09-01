@@ -76,7 +76,7 @@ export function useProjectsEditor() {
       await updateProjects(projects, lang as Lang, token as string);
       mutate();
       toast.success(t("projects.UpdateSuccess"));
-    } catch (_error) {
+    } catch {
       toast.error(t("projects.UpdateError"));
     }
   };

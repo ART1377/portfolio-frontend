@@ -4,15 +4,22 @@ import { motion } from "framer-motion";
 import SummaryCards from "./summary-cards";
 import SubmissionsTable from "./submissions-table";
 import ExperiencePreview from "./experience-preview";
+import { AboutData } from "@/app/types/shared/about/aboutData";
+import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
+import { ExperienceData } from "@/app/types/shared/experience/experience";
+import { Project } from "@/app/types/shared/project/project";
+import { Skill } from "@/app/types/shared/skill/skill";
+import { Submission } from "@/app/types/shared/submission/submission";
 
-interface AdminDashboardProps {
-  projects: any[];
-  skills: any[];
-  experienceData: any;
-  contactInfo: any;
-  submissions: any[];
-  aboutData: any;
-}
+
+type AdminDashboardProps = {
+  projects: Project[]; // Replace unknown[] with your actual project type
+  skills: Skill[];
+  experienceData: ExperienceData;
+  contactInfo: ContactInfo;
+  submissions: Submission[]; // Replace unknown[] with your actual submission type
+  aboutData: AboutData;
+};
 
 export default function AdminDashboardContent({
   projects,

@@ -117,18 +117,18 @@ export function ScrollProgress() {
   );
 }
 
+const sections = [
+  { id: "home", label: "Home", color: "bg-blue-500" },
+  { id: "about", label: "About", color: "bg-green-500" },
+  { id: "skills", label: "Skills", color: "bg-yellow-500" },
+  { id: "projects", label: "Projects", color: "bg-purple-500" },
+  { id: "experience", label: "Experience", color: "bg-orange-500" },
+  { id: "contact", label: "Contact", color: "bg-pink-500" },
+];
+
 function SectionProgress() {
   const [activeSection, setActiveSection] = useState("home");
   const [isVisible, setIsVisible] = useState(false);
-
-  const sections = [
-    { id: "home", label: "Home", color: "bg-blue-500" },
-    { id: "about", label: "About", color: "bg-green-500" },
-    { id: "skills", label: "Skills", color: "bg-yellow-500" },
-    { id: "projects", label: "Projects", color: "bg-purple-500" },
-    { id: "experience", label: "Experience", color: "bg-orange-500" },
-    { id: "contact", label: "Contact", color: "bg-pink-500" },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -152,7 +152,7 @@ function SectionProgress() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, []); // sections is now stable, so [] is fine
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });

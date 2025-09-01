@@ -1,3 +1,5 @@
+type ErrorWithResponse = Error & { response?: Response };
+
 export async function loginAdmin(username: string, password: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
     method: "POST",
@@ -6,13 +8,13 @@ export async function loginAdmin(username: string, password: string) {
   });
 
   if (!res.ok) {
-    const error = new Error("Login failed");
-    (error as any).response = res;
+    const error: ErrorWithResponse = new Error("Login failed");
+    error.response = res;
     throw error;
   }
 
   const data = await res.json();
-  return data; 
+  return data;
 }
 
 export async function logoutAdmin() {

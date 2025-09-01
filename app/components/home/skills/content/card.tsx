@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Card, CardContent } from "@/app/components/ui/card";
 import { SkillCategory } from "@/app/types/shared/skill/skill";
 import {
@@ -81,7 +81,7 @@ export function SkillCard({ category, index, isInView }: SkillCardProps) {
 
   return (
     <motion.div
-      variants={cardVariants as any}
+      variants={cardVariants as Variants}
       className="transform hover:-translate-y-3 transition-transform duration-300 ease-in-out"
       aria-label={`Skill category: ${category.title}`}
       tabIndex={0}

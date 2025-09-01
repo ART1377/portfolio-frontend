@@ -13,7 +13,6 @@ const fetcher = (url: string) =>
     .then((res) => res.json())
     .then((data: Suggestion[]) => data.map((d) => d.name));
 
-
 type ChipsInputProps = {
   values: string[];
   onChange: (values: string[]) => void;
@@ -123,6 +122,7 @@ export default function ChipsInput({
               <li
                 key={idx}
                 role="option"
+                aria-selected={highlightIndex === idx}
                 tabIndex={0}
                 className={cn(
                   "cursor-pointer rounded px-3 py-1",
@@ -131,6 +131,12 @@ export default function ChipsInput({
                     : "hover:bg-primary hover:text-primary-foreground"
                 )}
                 onClick={() => handleAdd(suggestion)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleAdd(suggestion);
+                  }
+                }}
                 onMouseEnter={() => setHighlightIndex(idx)}
               >
                 {suggestion}

@@ -35,7 +35,7 @@ export default function DeleteSubmissionButton({ id }: { id: number }) {
       try {
         await deleteSubmissionById(id, token as string);
         toast.success(t("submissions.DeleteSuccess"));
-      } catch (_error) {
+      } catch {
         toast.error(t("submissions.DeleteFail"));
       }
     });

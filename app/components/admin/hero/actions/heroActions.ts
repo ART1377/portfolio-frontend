@@ -1,8 +1,9 @@
 "use server";
 
+import { HeroData } from "@/app/types/shared/hero/heroData";
 import { revalidateTag } from "next/cache";
 
-export async function updateHeroInfo(data: any, token: string) {
+export async function updateHeroInfo(data: HeroData, token: string) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/hero`, {
     method: "PUT",
     headers: {

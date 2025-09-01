@@ -9,7 +9,6 @@ import {
 } from "@/app/components/ui/card";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { useLang } from "@/app/context/langContext";
 
 interface SummaryCardProps {
   label: string;

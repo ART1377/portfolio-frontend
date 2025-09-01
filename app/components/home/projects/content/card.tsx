@@ -11,7 +11,7 @@ import { Button } from "@/app/components/ui/button";
 import { Badge } from "@/app/components/ui/badge";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Project } from "@/app/types/shared/project/project";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -50,7 +50,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
   };
 
   return (
-    <motion.div variants={cardVariants as any}>
+    <motion.div variants={cardVariants as Variants}>
       <Card
         className="overflow-hidden hover:shadow-lg transition-shadow group h-full"
         onMouseMove={handleMove}

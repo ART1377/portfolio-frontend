@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useRef, useMemo } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, useMemo } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export function ParallaxParticles() {
-  const ref = useRef(null)
+  const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
-  })
+  });
 
   const particles = useMemo(
     () =>
@@ -21,13 +21,23 @@ export function ParallaxParticles() {
         opacity: Math.random() * 0.3 + 0.1,
         delay: Math.random() * 5,
       })),
-    [],
-  )
+    []
+  );
 
-  const yTransforms = particles.map((particle) => useTransform(scrollYProgress, [0, 1], [0, -200 * particle.speed]))
+  // FIX: useMemo to call hooks at the top level
+  const yTransforms = useMemo(
+    () =>
+      particles.map((particle) =>
+        useTransform(scrollYProgress, [0, 1], [0, -200 * particle.speed])
+      ),
+    [particles, scrollYProgress]
+  );
 
   return (
-    <div ref={ref} className="fixed inset-0 pointer-events-none overflow-hidden">
+    <div
+      ref={ref}
+      className="fixed inset-0 pointer-events-none overflow-hidden"
+    >
       {particles.map((particle, index) => {
         return (
           <motion.div
@@ -41,7 +51,11 @@ export function ParallaxParticles() {
               y: yTransforms[index],
             }}
             animate={{
-              opacity: [particle.opacity, particle.opacity * 2, particle.opacity],
+              opacity: [
+                particle.opacity,
+                particle.opacity * 2,
+                particle.opacity,
+              ],
               scale: [1, 1.2, 1],
             }}
             transition={{
@@ -51,8 +65,8 @@ export function ParallaxParticles() {
               delay: particle.delay,
             }}
           />
-        )
+        );
       })}
     </div>
-  )
+  );
 }

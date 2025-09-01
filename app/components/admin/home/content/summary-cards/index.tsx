@@ -2,7 +2,12 @@
 
 import { SummaryCard } from "@/app/components/summary-card";
 import { useLang } from "@/app/context/langContext";
-import { formatJalaliDate } from "@/app/lib/utils/date/formatJalaliDate";
+import { AboutData } from "@/app/types/shared/about/aboutData";
+import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
+import { ExperienceData } from "@/app/types/shared/experience/experience";
+import { Project } from "@/app/types/shared/project/project";
+import { Skill } from "@/app/types/shared/skill/skill";
+import { Submission } from "@/app/types/shared/submission/submission";
 import {
   Code,
   NotebookPen,
@@ -13,14 +18,21 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+type SummaryCardsProps = {
+  projects: Project[]; // Replace unknown[] with your actual project type
+  skills: Skill[];
+  experienceData: ExperienceData;
+  submissions: Submission[]; // Replace unknown[] with your actual submission type
+  aboutData: AboutData;
+};
+
 export default function SummaryCards({
   projects,
   skills,
   experienceData,
-  contactInfo,
   submissions,
   aboutData,
-}: any) {
+}: SummaryCardsProps) {
   const totalProjects = projects?.length || 0;
   const totalSkills =
     skills?.reduce((sum: number, cat: any) => sum + cat.skills.length, 0) || 0;
@@ -28,14 +40,7 @@ export default function SummaryCards({
   const submissionsCount = submissions?.length || 0;
   const aboutFeaturesCount = aboutData?.features.length || 0;
 
-  const { lang } = useLang();
   const { t } = useTranslation("dashboard");
-
-  const contactLastUpdated =
-    contactInfo?.updatedAt &&
-    (lang === "fa"
-      ? formatJalaliDate(contactInfo.updatedAt, "short")
-      : new Date(contactInfo.updatedAt).toLocaleDateString(lang));
 
   const summaryItems = [
     {
@@ -58,7 +63,7 @@ export default function SummaryCards({
     },
     {
       label: "Contact Info",
-      count: contactLastUpdated || t("Not Set"),
+      count: t("Not Set"),
       icon: <Contact className="text-primary" />,
       href: "/admin/contact-info",
     },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import {
   Card,
   CardContent,
@@ -38,7 +38,7 @@ export function ContactForm({ isInView }: { isInView: boolean }) {
       await submitContactForm(formData);
       toast.success(t("success"));
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (_error) {
+    } catch {
       toast.error(t("error"));
     }
   };
@@ -87,7 +87,7 @@ export function ContactForm({ isInView }: { isInView: boolean }) {
           >
             <motion.div
               className="grid md:grid-cols-2 gap-4"
-              variants={itemVariants as any}
+              variants={itemVariants as Variants}
             >
               <motion.div whileFocus={{ scale: 1.02 }}>
                 <Input
@@ -110,7 +110,7 @@ export function ContactForm({ isInView }: { isInView: boolean }) {
               </motion.div>
             </motion.div>
             <motion.div
-              variants={itemVariants as any}
+              variants={itemVariants as Variants}
               whileFocus={{ scale: 1.02 }}
             >
               <Input
@@ -122,7 +122,7 @@ export function ContactForm({ isInView }: { isInView: boolean }) {
               />
             </motion.div>
             <motion.div
-              variants={itemVariants as any}
+              variants={itemVariants as Variants}
               whileFocus={{ scale: 1.02 }}
             >
               <Textarea
@@ -135,7 +135,7 @@ export function ContactForm({ isInView }: { isInView: boolean }) {
               />
             </motion.div>
             <motion.div
-              variants={itemVariants as any}
+              variants={itemVariants as Variants}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

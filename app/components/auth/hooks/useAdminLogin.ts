@@ -24,14 +24,17 @@ export function useAdminLogin() {
       const data = await loginAdmin(username, password);
       login(data.token);
       router.push("/admin");
-    } catch (err: any) {
+    } catch (err: unknown) {
       let errorCode = "UNKNOWN_ERROR";
 
-      try {
-        const data = await err.response?.json();
-        if (data?.errorCode) errorCode = data.errorCode;
-      } catch {
-        // ignore JSON parse errors
+      if (err && typeof err === "object" && "response" in err && err.response) {
+        try {
+          // @ts-expect-error: response may not be typed
+          const data = await err.response.json();
+          if (data?.errorCode) errorCode = data.errorCode;
+        } catch {
+          // ignore JSON parse errors
+        }
       }
 
       setError(t(`errors.${errorCode}`, t("errors.UNKNOWN_ERROR")));

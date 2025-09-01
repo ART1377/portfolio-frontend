@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
 import ExperienceCard from "./card";
 
 interface Experience {
@@ -55,7 +54,7 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
       </h3>
       <div className="space-y-6">
         {experiences?.map((exp, index) => (
-          <motion.div key={index} variants={cardVariants as any}>
+          <motion.div key={index} variants={cardVariants as Variants}>
             <ExperienceCard exp={exp} />
           </motion.div>
         ))}

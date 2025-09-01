@@ -7,7 +7,7 @@ import { Label } from "@/app/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/app/components/ui/card";
 import { useTranslation } from "react-i18next";
 import ChipsInput from "@/app/components/chips-input";
-import { Briefcase, Plus, Trash2, Calendar, FileText } from "lucide-react";
+import { Briefcase, Trash2, Calendar, FileText } from "lucide-react";
 
 export default function ExperienceSection({
   data,

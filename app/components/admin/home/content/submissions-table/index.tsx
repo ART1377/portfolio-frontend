@@ -2,12 +2,13 @@
 
 import { useLang } from "@/app/context/langContext";
 import { formatJalaliDate } from "@/app/lib/utils/date/formatJalaliDate";
+import { Submission } from "@/app/types/shared/submission/submission";
 import { useTranslation } from "react-i18next";
 
 export default function SubmissionsTable({
   submissions,
 }: {
-  submissions: any[];
+  submissions: Submission[];
 }) {
   const hasData = submissions && submissions.length > 0;
 

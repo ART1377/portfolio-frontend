@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
 import { useTranslation } from "react-i18next";
@@ -53,7 +53,7 @@ export function ContactDetails({ contactInfoData, isInView }: Props) {
           <motion.div
             key={index}
             className="flex items-center gap-x-3"
-            variants={itemVariants as any}
+            variants={itemVariants as Variants}
             whileHover={{ x: 10 }}
             transition={{ type: "spring", stiffness: 300 }}
           >

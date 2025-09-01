@@ -8,20 +8,50 @@ function toPersianDigits(str: string | number): string {
 
 // Month names in Persian
 const persianMonths = [
-  "فروردین", "اردیبهشت", "خرداد",
-  "تیر", "مرداد", "شهریور",
-  "مهر", "آبان", "آذر",
-  "دی", "بهمن", "اسفند"
+  "فروردین",
+  "اردیبهشت",
+  "خرداد",
+  "تیر",
+  "مرداد",
+  "شهریور",
+  "مهر",
+  "آبان",
+  "آذر",
+  "دی",
+  "بهمن",
+  "اسفند",
 ];
 
 // Jalali conversion algorithm
-function toJalali(gy: number, gm: number, gd: number): { jy: number; jm: number; jd: number } {
-  const g_d_m = [0, 31, (gy % 4 === 0 && gy % 100 !== 0) || (gy % 400 === 0) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  let gy2 = gy - 1600;
-  let gm2 = gm - 1;
-  let gd2 = gd - 1;
+function toJalali(
+  gy: number,
+  gm: number,
+  gd: number
+): { jy: number; jm: number; jd: number } {
+  const g_d_m = [
+    0,
+    31,
+    (gy % 4 === 0 && gy % 100 !== 0) || gy % 400 === 0 ? 29 : 28,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31,
+  ];
+  const gy2 = gy - 1600;
+  const gm2 = gm - 1;
+  const gd2 = gd - 1;
 
-  let g_day_no = 365 * gy2 + Math.floor((gy2 + 3) / 4) - Math.floor((gy2 + 99) / 100) + Math.floor((gy2 + 399) / 400);
+  let g_day_no =
+    365 * gy2 +
+    Math.floor((gy2 + 3) / 4) -
+    Math.floor((gy2 + 99) / 100) +
+    Math.floor((gy2 + 399) / 400);
   for (let i = 0; i < gm2; ++i) g_day_no += g_d_m[i];
   g_day_no += gd2;
 
@@ -48,11 +78,18 @@ function toJalali(gy: number, gm: number, gd: number): { jy: number; jm: number;
 }
 
 // Main formatter
-export function formatJalaliDate(dateString: string, format: "short" | "long" = "short"): string {
+export function formatJalaliDate(
+  dateString: string,
+  format: "short" | "long" = "short"
+): string {
   if (!dateString) return "نامشخص";
 
   const date = new Date(dateString);
-  const { jy, jm, jd } = toJalali(date.getFullYear(), date.getMonth() + 1, date.getDate());
+  const { jy, jm, jd } = toJalali(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    date.getDate()
+  );
 
   const year = toPersianDigits(jy);
   const month = toPersianDigits(jm);
