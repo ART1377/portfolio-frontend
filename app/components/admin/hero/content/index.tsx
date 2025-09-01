@@ -1,7 +1,5 @@
 "use client";
 
-import { Card, CardHeader, CardTitle } from "@/app/components/ui/card";
-import { HomeIcon, User } from "lucide-react";
 import { useHeroData } from "../hooks/useHeroData";
 import { useResumeUploader } from "../hooks/useResumeUploader";
 import HeroForm from "./form";

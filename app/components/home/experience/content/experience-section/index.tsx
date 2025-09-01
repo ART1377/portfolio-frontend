@@ -20,21 +20,6 @@ interface ExperienceSectionProps {
 export function ExperienceSection({ experiences }: ExperienceSectionProps) {
   const { t } = useTranslation("experience");
 
-  const [tilt, setTilt] = useState({ rx: 0, ry: 0, t: "0,0,0" });
-
-  function handleMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    const ry = (px - 0.5) * 10;
-    const rx = (0.5 - py) * 10;
-    setTilt({ rx, ry, t: `${(px - 0.5) * 12}px, ${(py - 0.5) * 12}px, 0` });
-  }
-
-  function handleLeave() {
-    setTilt({ rx: 0, ry: 0, t: "0,0,0" });
-  }
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

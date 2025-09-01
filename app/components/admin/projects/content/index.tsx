@@ -21,7 +21,6 @@ import { ImageUpload } from "./image-upload";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AddButton } from "@/app/components/ui/button"; // primary AddButton
-import { uploadImage } from "@/app/lib/utils/upload/image";
 import ProjectsEditorSkeleton from "../skeleton";
 
 export default function ProjectsEditor() {

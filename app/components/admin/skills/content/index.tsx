@@ -2,7 +2,7 @@
 
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
-import { Card, CardContent, CardHeader } from "@/app/components/ui/card";
+import { Card, CardContent } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
 import {
   Plus,
@@ -15,7 +15,6 @@ import {
   Database,
   Globe,
   Target,
-  Briefcase,
 } from "lucide-react";
 import SkillsEditorSkeleton from "../skeleton";
 import { useSkillsEditor } from "../hooks/useSkillsEditor";

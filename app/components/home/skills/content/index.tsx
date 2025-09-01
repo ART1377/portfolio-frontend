@@ -6,7 +6,6 @@ import { SectionParallax } from "@/app/components/parallax/section-parallax";
 import { SkillCategory } from "@/app/types/shared/skill/skill";
 import { SkillCard } from "./card";
 import SkillsContentHeader from "./header";
-import { InfiniteSkillQueue } from "./infinite-skill-queue";
 
 interface Props {
   skills: SkillCategory[];

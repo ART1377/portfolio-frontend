@@ -21,7 +21,7 @@ export function ScrollProgress() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  });
 
   const [percent, setPercent] = useState(0);
 
@@ -169,7 +169,7 @@ function SectionProgress() {
       transition={{ duration: 0.3 }}
     >
       <div className="flex flex-col space-y-4">
-        {sections.map((section, index) => (
+        {sections.map((section) => (
           <motion.div
             key={section.id}
             className="relative group cursor-pointer"

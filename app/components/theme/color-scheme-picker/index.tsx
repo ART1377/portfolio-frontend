@@ -83,7 +83,7 @@ export function ColorSchemePicker() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
-                  {Object.entries(colorSchemes).map(([key, scheme]) => {
+                  {Object.entries(colorSchemes).map(([key]) => {
                     const isActive = colorScheme === key;
                     const schemeData = colorSchemes[key as ColorScheme];
 

@@ -38,7 +38,7 @@ export function ContactForm({ isInView }: { isInView: boolean }) {
       await submitContactForm(formData);
       toast.success(t("success"));
       setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
+    } catch (_error) {
       toast.error(t("error"));
     }
   };

@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import HeroSkeleton from "./hero/skeleton";
 import AboutSkeleton from "./about/skeleton";
 import SkillsSkeleton from "./skills/skeleton";

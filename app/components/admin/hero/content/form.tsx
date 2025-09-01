@@ -10,7 +10,7 @@ import { Label } from "@/app/components/ui/label";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
 import { Textarea } from "@/app/components/ui/textarea";
-import { User, Briefcase, FileText, Sparkles } from "lucide-react";
+import { User, Briefcase } from "lucide-react";
 import { HeroData } from "@/app/types/shared/hero/heroData";
 import { useTranslation } from "react-i18next";
 

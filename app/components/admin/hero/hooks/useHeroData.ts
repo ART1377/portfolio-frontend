@@ -55,7 +55,7 @@ export function useHeroData() {
         await actions.updateHeroInfo(form, token as string);
         toast.success(t("hero.UpdateSuccess"));
         mutate();
-      } catch (err) {
+      } catch (_error) {
         toast.error(t("hero.UpdateError"));
       }
     });

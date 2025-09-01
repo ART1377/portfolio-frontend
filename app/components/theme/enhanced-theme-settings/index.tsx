@@ -170,7 +170,7 @@ export function EnhancedThemeSettings() {
                     </div>
 
                     <div className="grid grid-cols-2 gap-3 max-h-64 overflow-y-auto">
-                      {Object.entries(colorSchemes).map(([key, scheme]) => (
+                      {Object.entries(colorSchemes).map(([key]) => (
                         <ThemePreview
                           key={key}
                           scheme={key as ColorScheme}

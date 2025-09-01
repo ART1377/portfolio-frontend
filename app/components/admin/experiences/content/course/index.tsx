@@ -3,10 +3,9 @@
 import { Input } from "@/app/components/ui/input";
 import { AddButton, Button } from "@/app/components/ui/button";
 import { Label } from "@/app/components/ui/label";
-import { Textarea } from "@/app/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/app/components/ui/card";
 import { useTranslation } from "react-i18next";
-import { BookOpen, Plus, Trash2, Building, Calendar } from "lucide-react";
+import { BookOpen, Trash2, Building, Calendar } from "lucide-react";
 
 export default function CourseSection({
   data,

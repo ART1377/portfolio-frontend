@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/app/components/ui/card";
+import { Card, CardHeader, CardContent } from "@/app/components/ui/card";
 import { Skeleton } from "@/app/components/ui/skeleton";
 
 export default function AboutEditorSkeleton() {

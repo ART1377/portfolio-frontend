@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ExperienceData } from "@/app/types/shared/experience/experience";
 import { ExperienceSection } from "./experience-section";
 import { EducationSection } from "./education";

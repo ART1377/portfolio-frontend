@@ -69,7 +69,6 @@ const LoginForm = () => {
                   value={username}
                   onChange={(e) => onUsernameChange(e.target.value)}
                   placeholder={t("enterUsername")}
-                  autoFocus
                   className={cn(
                     "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200 placeholder:ps-1",
                     dir === "rtl" ? "pr-10 pl-12" : "pl-12 pr-12",
@@ -97,7 +96,6 @@ const LoginForm = () => {
                     value={password}
                     onChange={(e) => onPasswordChange(e.target.value)}
                     placeholder={t("enterPassword")}
-                    autoFocus
                     aria-label={t("enterPassword")}
                     className={cn(
                       "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200 placeholder:ps-1",

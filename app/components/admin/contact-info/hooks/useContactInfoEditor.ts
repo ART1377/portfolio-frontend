@@ -72,7 +72,7 @@ export function useContactInfoEditor() {
         await updateContactInfo(formData, lang as Lang, token as string);
         toast.success(t("contact.UpdateSuccess"));
         mutate();
-      } catch (err) {
+      } catch (_err) {
         toast.error(t("contact.UpdateFail"));
       }
     });

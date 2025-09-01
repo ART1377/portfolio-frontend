@@ -6,7 +6,7 @@ import AdminSectionHeader from "../../admin-section-header";
 import { useTranslation } from "react-i18next";
 import ExperienceEditorSkeleton from "../skeleton";
 import { useExperienceForm } from "../hooks/useExperienceForm";
-import { Briefcase, Save, Loader2 } from "lucide-react";
+import { Save, Loader2 } from "lucide-react";
 
 import ExperienceSection from "./experience";
 import EducationSection from "./education";

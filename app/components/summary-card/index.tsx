@@ -20,7 +20,6 @@ interface SummaryCardProps {
 
 export function SummaryCard({ label, count, icon, href }: SummaryCardProps) {
   const { t } = useTranslation("dashboard");
-  const { lang } = useLang();
 
   return (
     <Card className="hover:shadow-xl cursor-pointer backdrop-blur-md bg-white/80 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 rounded-2xl transition-all">

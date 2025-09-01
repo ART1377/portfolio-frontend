@@ -77,7 +77,7 @@ export function AdminNavigation() {
     },
   ];
 
-  const NavLinks = ({ isMobile = false }: { isMobile?: boolean }) => (
+  const NavLinks = () => (
     <div className="flex flex-col h-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
@@ -189,7 +189,7 @@ export function AdminNavigation() {
                   className="w-80 p-0"
                 >
                   <div className="p-6">
-                    <NavLinks isMobile={true} />
+                    <NavLinks />
                   </div>
                 </SheetContent>
               </Sheet>

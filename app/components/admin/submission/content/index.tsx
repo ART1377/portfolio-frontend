@@ -2,15 +2,12 @@
 
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardContent,
 } from "@/app/components/ui/card";
 import { Submission } from "@/app/types/shared/submission/submission";
 import SubmissionsTable from "./table";
 import { useTranslation } from "react-i18next";
 import AdminSectionHeader from "../../admin-section-header";
-import { Mail } from "lucide-react";
 
 type Props = {
   submissions: Submission[];
