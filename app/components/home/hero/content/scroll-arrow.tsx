@@ -27,6 +27,7 @@ export function HeroScrollArrow() {
         size="icon"
         onClick={scrollToAbout}
         className="animate-bounce"
+        aria-label="Scroll down"
       >
         <ArrowDown className="h-5 w-5" />
       </Button>

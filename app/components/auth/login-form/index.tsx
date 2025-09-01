@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Button } from "@/app/components/ui/button";
-import { Eye, EyeOff, Lock, Shield } from "lucide-react";
+import { Eye, EyeOff, Lock, MailIcon, Shield } from "lucide-react";
 import { cn } from "@/app/lib/utils/cn/cn";
 import { useLang } from "@/app/context/langContext";
 import { useAdminLogin } from "../hooks/useAdminLogin";
@@ -63,19 +63,30 @@ const LoginForm = () => {
                 >
                   {t("usernameLabel")}
                 </label>
-                <Input
-                  id="username"
-                  type="text"
-                  value={username}
-                  onChange={(e) => onUsernameChange(e.target.value)}
-                  placeholder={t("enterUsername")}
-                  className={cn(
-                    "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200 placeholder:ps-1",
-                    dir === "rtl" ? "pr-10 pl-12" : "pl-12 pr-12",
-                    error &&
-                      "border-red-300 dark:border-red-500 bg-red-50/50 dark:bg-red-900/20 focus:border-red-400 dark:focus:border-red-400"
-                  )}
-                />
+                <div className="relative">
+                  <div
+                    className={cn(
+                      "absolute top-1/2 -translate-y-1/2",
+                      dir === "rtl" ? "right-3" : "left-3"
+                    )}
+                    style={{ color: "hsl(var(--muted-foreground))" }}
+                  >
+                    <MailIcon className="w-5 h-5" />
+                  </div>
+                  <Input
+                    id="username"
+                    type="text"
+                    value={username}
+                    onChange={(e) => onUsernameChange(e.target.value)}
+                    placeholder={t("enterUsername")}
+                    className={cn(
+                      "h-12 bg-[color:var(--muted)/0.5] dark:bg-[color:var(--muted)/0.5] border-[color:var(--border)] dark:border-[color:var(--border)] focus:bg-[color:var(--background)] dark:focus:bg-[color:var(--background)] transition-colors duration-200 placeholder:ps-1",
+                      dir === "rtl" ? "pr-10 pl-12" : "pl-12 pr-12",
+                      error &&
+                        "border-red-300 dark:border-red-500 bg-red-50/50 dark:bg-red-900/20 focus:border-red-400 dark:focus:border-red-400"
+                    )}
+                  />
+                </div>
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium block text-muted-foreground">
