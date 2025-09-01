@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin,Send  } from "lucide-react";
+import { Github, Linkedin, Send } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { ContactInfo } from "@/app/types/shared/contact/contactInfo";
 import { useTranslation } from "react-i18next";
@@ -24,18 +24,35 @@ export function ContactSocials({
       <h3 className="text-2xl font-semibold mb-6">{t("followMeTitle")}</h3>
       <div className="flex gap-x-4">
         {[
-          { icon: Github, link: contactInfoData.social.github },
-          { icon: Linkedin, link: contactInfoData.social.linkedin },
-          { icon: Send , link: contactInfoData.social.telegram },
-        ].map(({ icon: Icon, link }, index) => (
+          {
+            icon: Github,
+            link: contactInfoData.social.github,
+            label: "GitHub",
+          },
+          {
+            icon: Linkedin,
+            link: contactInfoData.social.linkedin,
+            label: "LinkedIn",
+          },
+          {
+            icon: Send,
+            link: contactInfoData.social.telegram,
+            label: "Telegram",
+          },
+        ].map(({ icon: Icon, link, label }, index) => (
           <motion.div
             key={index}
             whileHover={{ scale: 1.2, rotate: 5 }}
             whileTap={{ scale: 0.9 }}
           >
-            <a href={link} target="_blank" rel="noopener noreferrer">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit my ${label}`}
+            >
               <Button variant="outline" size="icon">
-                <Icon className="h-5 w-5" />
+                <Icon className="h-5 w-5" aria-hidden="true" />
               </Button>
             </a>
           </motion.div>

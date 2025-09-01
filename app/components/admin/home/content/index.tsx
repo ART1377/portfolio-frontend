@@ -40,7 +40,6 @@ export default function AdminDashboardContent({
           projects={projects}
           skills={skills}
           experienceData={experienceData}
-          contactInfo={contactInfo}
           submissions={submissions}
           aboutData={aboutData}
         />

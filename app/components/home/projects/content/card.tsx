@@ -72,7 +72,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                 ? project.image
                 : `${process.env.NEXT_PUBLIC_API_URL}${project.image}` // for local paths if any
             }
-            alt={project.title}
+            alt={`${project.title} project preview image`}
             fill
             className="object-cover transition-transform group-hover:scale-110 duration-300"
           />
@@ -93,8 +93,12 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button size="sm" variant="secondary">
-                      <ExternalLink className="h-4 w-4" />
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      aria-label={`Open ${project.title} live demo`}
+                    >
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
                     </Button>
                   </a>
                 </motion.div>
@@ -109,8 +113,12 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button size="sm" variant="secondary">
-                      <Github className="h-4 w-4" />
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      aria-label={`View ${project.title} on GitHub`}
+                    >
+                      <Github className="h-4 w-4" aria-hidden="true" />
                     </Button>
                   </a>
                 </motion.div>
@@ -178,8 +186,12 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button size="sm" variant="outline">
-                      <Github className="h-4 w-4" />
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      aria-label={`View ${project.title} on GitHub`}
+                    >
+                      <Github className="h-4 w-4" aria-hidden="true" />
                     </Button>
                   </a>
                 </motion.div>

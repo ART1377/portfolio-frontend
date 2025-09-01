@@ -18,7 +18,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "portfolio-backend-production-5b10.up.railway.app",
         port: "", // leave empty for default
-        pathname: "/api/uploads/**",
+        pathname: "/api/**",
       },
       {
         protocol: "https",
