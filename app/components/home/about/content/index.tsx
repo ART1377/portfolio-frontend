@@ -20,7 +20,7 @@ export default function AboutContent({
     <section id="about" ref={sectionRef} aria-labelledby="about-heading">
       <ParallaxContainer>
         <div className="section-container relative z-10">
-          <div className="mx-auto w-full max-w-6xl px-6 py-24 md:py-28">
+          <div className="mx-auto w-full">
             <h2 id="about-heading" className="sr-only">
               About Me
             </h2>

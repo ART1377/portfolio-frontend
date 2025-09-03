@@ -53,7 +53,7 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16">
           <motion.div
-            className="font-bold text-xl"
+            className="font-bold text-xl hidden md:block"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -92,7 +92,6 @@ export function Navigation() {
 
           {/* Mobile Hamburger */}
           <div className="md:hidden flex items-center gap-2">
-            {/* <LanguageToggle /> */}
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <Button
                 ref={toggleButtonRef}
@@ -125,6 +124,16 @@ export function Navigation() {
                 </AnimatePresence>
               </Button>
             </motion.div>
+          </div>
+          <motion.div
+            className="font-bold text-xl ms-2 md:hidden"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            {t("name")}
+          </motion.div>
+          <div className="ms-auto md:hidden">
+            <LanguageSwitcher />
           </div>
         </div>
 
