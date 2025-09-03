@@ -52,7 +52,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
   return (
     <motion.div variants={cardVariants as Variants}>
       <Card
-        className="overflow-hidden hover:shadow-lg transition-shadow group h-full"
+        className="overflow-hidden hover:shadow-lg transition-shadow group h-full break-words"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
         style={{
@@ -61,6 +61,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
           transition: "transform 0.15s ease-out",
         }}
       >
+        {/* Image with hover overlay */}
         <motion.div
           className="relative h-48 overflow-hidden"
           whileHover={{ scale: 1.05 }}
@@ -70,13 +71,14 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
             src={
               project.image?.startsWith("http")
                 ? project.image
-                : `${process.env.NEXT_PUBLIC_API_URL}${project.image}` // for local paths if any
+                : `${process.env.NEXT_PUBLIC_API_URL}${project.image}`
             }
             alt={`${project.title} project preview image`}
             fill
             className="object-cover transition-transform group-hover:scale-110 duration-300"
           />
-          <div>{project.image}</div>
+
+          {/* Hover overlay with action buttons */}
           <motion.div
             className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
             initial={{ opacity: 0 }}
@@ -127,14 +129,21 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
           </motion.div>
         </motion.div>
 
-        <div className="flex flex-col justify-between h-[calc(100%-192px)]">
+        {/* Card content */}
+        <div className="flex flex-col justify-between h-[calc(100%-192px)] min-w-0">
           <CardHeader>
-            <CardTitle className="text-xl">{project.title}</CardTitle>
-            <CardDescription>{project.description}</CardDescription>
+            <CardTitle className="text-xl break-words">
+              {project.title}
+            </CardTitle>
+            <CardDescription className="break-words">
+              {project.description}
+            </CardDescription>
           </CardHeader>
+
           <CardContent>
+            {/* Tech badges */}
             <motion.div
-              className="flex flex-wrap gap-2 mb-4"
+              className="flex flex-wrap gap-2 mb-4 min-w-0"
               initial={{ opacity: 0 }}
               animate={isInView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
@@ -150,14 +159,15 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                   }}
                   whileHover={{ scale: 1.1 }}
                 >
-                  <Badge variant="secondary" className="text-xs">
+                  <Badge variant="secondary" className="text-xs break-words">
                     <span className="font-medium">{tech}</span>
                   </Badge>
                 </motion.div>
               ))}
             </motion.div>
 
-            <div className="flex gap-2">
+            {/* Footer buttons */}
+            <div className="flex gap-2 min-w-0">
               {project.liveUrl && (
                 <motion.div
                   className="flex-1"
@@ -169,7 +179,7 @@ export function ProjectCard({ project, index, isInView }: ProjectCardProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Button size="sm" className="w-full">
+                    <Button size="sm" className="w-full min-w-0">
                       <ExternalLink className="mr-2 h-4 w-4" />
                       {t("buttons.liveDemo")}
                     </Button>
