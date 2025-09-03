@@ -65,7 +65,7 @@ export function ColorSchemePicker() {
         {isOpen && (
           <motion.div
             ref={menuRef}
-            className="absolute bottom-16 right-0 w-96"
+            className="absolute bottom-8 right-0 w-[85vw] max-w-sm sm:w-96 max-h-[60vh] overflow-y-auto rounded-lg sm:max-h-[70vh]"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -75,14 +75,14 @@ export function ColorSchemePicker() {
               <CardHeader className="pb-3">
                 <div className="flex items-center gap-x-2">
                   <Sparkles className="h-5 w-5 text-primary" />
-                  <CardTitle className="text-lg">
+                  <CardTitle className="text-base sm:text-lg">
                     {t("color_schemes")}
                   </CardTitle>
                 </div>
                 <CardDescription>{t("color_description")}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {Object.entries(colorSchemes).map(([key]) => {
                     const isActive = colorScheme === key;
                     const schemeData = colorSchemes[key as ColorScheme];
