@@ -24,7 +24,7 @@ export function useExperienceForm() {
 
   useEffect(() => {
     if (data) setFormData(data);
-  }, [data, formData]);
+  }, [data]);
 
   useKeyPressHandler({
     key: "Enter",
