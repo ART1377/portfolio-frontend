@@ -22,9 +22,8 @@ export function useSkillsEditor() {
 
   const [skillsData, setSkillsData] = useState<SkillCategory[] | null>(null);
 
-  // Sync SWR data to local state
   useEffect(() => {
-    if (data) setSkillsData(data);
+    if (data) setSkillsData(JSON.parse(JSON.stringify(data)));
   }, [data]);
 
   // Save on Enter
@@ -91,7 +90,7 @@ export function useSkillsEditor() {
     if (!skillsData) return;
     try {
       await updateSkillsData(skillsData, lang as Lang, token as string);
-      mutate();
+      mutate(skillsData, false);
       toast.success(t("skills.successUpdate"));
     } catch {
       toast.error(t("skills.errorUpdate"));

@@ -26,7 +26,7 @@ export function useProjectsEditor() {
   const [projects, setProjects] = useState<Project[] | null>(null);
 
   useEffect(() => {
-    if (data) setProjects(data);
+    if (data) setProjects(JSON.parse(JSON.stringify(data)));
   }, [data]);
 
   useKeyPressHandler({
@@ -74,7 +74,7 @@ export function useProjectsEditor() {
     if (!projects) return;
     try {
       await updateProjects(projects, lang as Lang, token as string);
-      mutate();
+      mutate(projects, false);
       toast.success(t("projects.UpdateSuccess"));
     } catch {
       toast.error(t("projects.UpdateError"));

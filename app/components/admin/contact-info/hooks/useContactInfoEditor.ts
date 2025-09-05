@@ -17,7 +17,6 @@ export function useContactInfoEditor() {
   const { t } = useTranslation("dashboard");
   const { token } = useAuth();
 
-
   const { data, error, mutate, isLoading } = useSWR<ContactInfo>(
     () => (lang ? `/contact-info?lang=${lang}` : null),
     () => fetchContactInfoClient(lang as Lang)
@@ -27,7 +26,7 @@ export function useContactInfoEditor() {
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    if (data) setFormData(data);
+    if (data) setFormData(JSON.parse(JSON.stringify(data)));
   }, [data]);
 
   useKeyPressHandler({
@@ -71,7 +70,7 @@ export function useContactInfoEditor() {
       try {
         await updateContactInfo(formData, lang as Lang, token as string);
         toast.success(t("contact.UpdateSuccess"));
-        mutate();
+        mutate(formData, false);
       } catch {
         toast.error(t("contact.UpdateFail"));
       }

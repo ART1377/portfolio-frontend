@@ -25,7 +25,7 @@ export function useAboutForm() {
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    if (data) setForm(data);
+    if (data) setForm(JSON.parse(JSON.stringify(data)));
   }, [data]);
 
   useKeyPressHandler({
@@ -106,7 +106,7 @@ export function useAboutForm() {
       try {
         await updateAboutData(form, lang as Lang, token as string);
         toast.success(t("about.UpdateSuccess"));
-        mutate();
+        mutate(form, false);
       } catch {
         toast.error(t("about.UpdateError"));
       }
