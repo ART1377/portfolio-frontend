@@ -2,7 +2,7 @@ export async function fetchAboutData(lang: "en" | "fa" = "en") {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/about?lang=${lang}`,
     {
-      cache: "force-cache",
+      cache: "no-store",
       next: { tags: ["about"] },
     }
   );
