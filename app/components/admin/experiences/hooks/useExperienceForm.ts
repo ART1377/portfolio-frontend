@@ -23,7 +23,7 @@ export function useExperienceForm() {
   const [formData, setFormData] = useState<ExperienceData | null>(null);
 
   useEffect(() => {
-    if (data) setFormData(data);
+    if (data) setFormData(JSON.parse(JSON.stringify(data)));
   }, [data]);
 
   useKeyPressHandler({
@@ -70,7 +70,7 @@ export function useExperienceForm() {
     if (!formData) return;
     try {
       await updateExperiences(formData, lang as Lang, token as string);
-      mutate();
+      mutate(formData, false); // update cache without re-fetching immediately
       toast.success(t("experience.UpdateSuccess"));
     } catch {
       toast.error(t("experience.UpdateError"));
