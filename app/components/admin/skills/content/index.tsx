@@ -43,23 +43,10 @@ export default function SkillsEditor() {
     removeCategory,
     removeSkill,
     handleSave,
+    saving,
   } = useSkillsEditor();
 
   const { t } = useTranslation("dashboard");
-
-  const getSkillLevelColor = (level: number) => {
-    if (level >= 80) return "bg-gradient-to-r from-green-500 to-emerald-600";
-    if (level >= 60) return "bg-gradient-to-r from-blue-500 to-cyan-600";
-    if (level >= 40) return "bg-gradient-to-r from-yellow-500 to-orange-600";
-    return "bg-gradient-to-r from-red-500 to-pink-600";
-  };
-
-  const getSkillLevelText = (level: number) => {
-    if (level >= 80) return t("skills.expert");
-    if (level >= 60) return t("skills.advanced");
-    if (level >= 40) return t("skills.intermediate");
-    return t("skills.beginner");
-  };
 
   if (isLoading || !skillsData) return <SkillsEditorSkeleton />;
   if (error) return <p>{t("skills.error")}</p>;
@@ -70,17 +57,14 @@ export default function SkillsEditor() {
         <AdminSectionHeader title={t("skills.title")} />
 
         {/* Card Content: Categories */}
-        <CardContent className="space-y-6 p-4 md:p-6">
+        <CardContent className="space-y-12 p-4 md:p-6">
           {skillsData.map((category, catIdx) => {
             const IconComponent =
               categoryIcons[category.title as keyof typeof categoryIcons] ||
               Star;
 
             return (
-              <div
-                key={catIdx}
-                className="p-4 bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50 rounded-lg border border-gray-100 dark:border-slate-600 space-y-4"
-              >
+              <div key={catIdx} className="rounded-lg border gap-y-4">
                 {/* Sub-header for Category */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
@@ -110,7 +94,7 @@ export default function SkillsEditor() {
                   {category.skills.map((skill, skillIdx) => (
                     <div
                       key={skillIdx}
-                      className="p-4 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-lg border border-gray-100 dark:border-slate-600"
+                      className="p-3 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-lg border border-gray-100 dark:border-slate-600"
                     >
                       <div className="flex items-center gap-4 mb-3">
                         <Input
@@ -124,7 +108,7 @@ export default function SkillsEditor() {
                             )
                           }
                           placeholder={t("skills.skillName")}
-                          className="flex-1 bg-background text-foreground"
+                          className="flex-1 bg-background text-foreground min-w-16"
                         />
                         <div className="flex items-center gap-2">
                           <Input
@@ -141,16 +125,8 @@ export default function SkillsEditor() {
                             placeholder={t("skills.skillLevel")}
                             min={0}
                             max={100}
-                            className="w-20 bg-background text-foreground"
+                            className="w-16 bg-background text-foreground"
                           />
-                          <Badge
-                            variant="secondary"
-                            className={`${getSkillLevelColor(
-                              skill.level
-                            )} text-white border-0`}
-                          >
-                            {getSkillLevelText(skill.level)}
-                          </Badge>
                           <Button
                             variant="ghost"
                             size="sm"
@@ -189,11 +165,11 @@ export default function SkillsEditor() {
         </CardContent>
 
         {/* Footer Buttons */}
-        <CardContent className="flex gap-4 justify-center pt-6 border-t border-border/50">
+        <CardContent className="flex flex-wrap gap-4 justify-center pt-6 border-t border-border/50">
           <Button
             onClick={addCategory}
             variant="outline"
-            className="border-dashed border-2 border-primary dark:border-primary hover:border-primary dark:hover:text-primary hover:bg-primary/20 dark:hover:bg-primary/20 text-primary dark:text-primary bg-transparent hover:text-primary"
+            className="border-dashed border-2 border-primary dark:border-primary hover:border-primary dark:hover:text-primary hover:bg-primary/20 dark:hover:bg-primary/20 text-primary dark:text-primary bg-transparent hover:text-primary flex-1"
           >
             <Plus className="w-4 h-4 mr-2" />
             {t("skills.addCategory")}
@@ -203,7 +179,8 @@ export default function SkillsEditor() {
             variant={"gradient"}
             onClick={handleSave}
             disabled={isLoading}
-            className="px-8"
+            className="px-8 flex-1"
+            isLoading={saving}
           >
             {isLoading ? (
               <div className="flex items-center gap-2">

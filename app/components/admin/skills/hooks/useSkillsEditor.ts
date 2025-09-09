@@ -14,6 +14,7 @@ export function useSkillsEditor() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
   const { token } = useAuth();
+  const [saving, setSaving] = useState(false);
 
   const { data, error, isLoading, mutate } = useSWR<SkillCategory[]>(
     () => `/skills?lang=${lang}`,
@@ -89,11 +90,14 @@ export function useSkillsEditor() {
   const handleSave = async () => {
     if (!skillsData) return;
     try {
+      setSaving(true); // start loading
       await updateSkillsData(skillsData, lang as Lang, token as string);
       mutate(skillsData, false);
       toast.success(t("skills.successUpdate"));
     } catch {
       toast.error(t("skills.errorUpdate"));
+    } finally {
+      setSaving(false); // stop loading
     }
   };
 
@@ -108,5 +112,6 @@ export function useSkillsEditor() {
     removeCategory,
     removeSkill,
     handleSave,
+    saving,
   };
 }

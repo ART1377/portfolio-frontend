@@ -22,10 +22,11 @@ export default function SkillsEditorSkeleton() {
               {/* Category header */}
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <Skeleton className="w-8 h-8 rounded-lg" />
-                  <Skeleton className="h-6 w-32" />
+                  <Skeleton className="w-8 h-8 rounded-lg" /> {/* Icon */}
+                  <Skeleton className="h-6 w-32" /> {/* Title */}
                 </div>
-                <Skeleton className="w-8 h-8 rounded-md" />
+                <Skeleton className="w-8 h-8 rounded-md" />{" "}
+                {/* Delete button */}
               </div>
 
               {/* Skills */}
@@ -33,19 +34,18 @@ export default function SkillsEditorSkeleton() {
                 {[...Array(3)].map((_, skillIdx) => (
                   <div
                     key={skillIdx}
-                    className="p-4 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-lg border border-gray-100 dark:border-slate-600 space-y-3"
+                    className="p-4 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-lg border border-gray-100 dark:border-slate-600 space-y-2"
                   >
-                    <div className="flex items-center gap-4">
-                      <Skeleton className="h-10 w-full" />
-                      <Skeleton className="h-10 w-20" />
-                      <Skeleton className="h-6 w-20 rounded-full" />
-                      <Skeleton className="w-8 h-8 rounded-md" />
+                    <div className="flex items-center gap-3">
+                      <Skeleton className="h-10 w-full" /> {/* Skill name */}
+                      <Skeleton className="h-10 w-20" /> {/* Level input */}
+                      <Skeleton className="w-8 h-8 rounded-md" />{" "}
+                      {/* Remove button */}
                     </div>
-                    <Skeleton className="h-2 w-full" />
+                    <Skeleton className="h-2 w-full" /> {/* Progress bar */}
                   </div>
                 ))}
-
-                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-full" /> {/* Add skill button */}
               </div>
             </div>
           ))}
@@ -53,8 +53,8 @@ export default function SkillsEditorSkeleton() {
 
         {/* Footer buttons */}
         <CardContent className="flex gap-4 justify-center pt-6 border-t border-border/50">
-          <Skeleton className="h-10 w-40" />
-          <Skeleton className="h-10 w-40" />
+          <Skeleton className="h-10 w-40" /> {/* Add category button */}
+          <Skeleton className="h-10 w-40" /> {/* Save button */}
         </CardContent>
       </Card>
     </section>
