@@ -73,7 +73,7 @@ export default function SuggestionsEditor({
       <section className="section-container my-10">
         <Card className="w-full max-w-5xl mx-auto">
           <AdminSectionHeader title={t("suggestions.title")} />
-          <CardContent className="space-y-6 p-4 md-p-6">
+          <CardContent className="space-y-6 p-3 md-p-6">
             {/* Add Section */}
             <div className="relative flex w-full gap-2">
               <Input

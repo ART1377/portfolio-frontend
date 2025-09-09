@@ -51,14 +51,14 @@ export default function ResumeUploader({
 
   return (
     <Card className="bg-gradient-to-br from-[hsl(var(--primary)/0.05)] to-[hsl(var(--secondary)/0.05)] border border-[hsl(var(--border))]">
-      <CardHeader>
+      <CardHeader className="p-3 md:p-6">
         <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
           <FileText className="h-5 w-5 text-[hsl(var(--primary))]" />
           {t("hero.ResumeTitle")}
         </CardTitle>
       </CardHeader>
 
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-6 p-3 md:p-6">
         {langs.map((lang) => (
           <div
             key={lang}
@@ -94,11 +94,12 @@ export default function ResumeUploader({
               </div>
             )}
 
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-3 items-center flex-wrap">
               <Button
                 variant={"gradient"}
                 onClick={() => handleUpload(lang)}
                 disabled={!resumeFiles[lang] || isUploading[lang]}
+                className="flex-1 md:flex-none"
               >
                 {isUploading[lang] ? (
                   <div className="flex items-center gap-2">
@@ -122,6 +123,7 @@ export default function ResumeUploader({
                   link.rel = "noopener noreferrer";
                   link.click();
                 }}
+                className="flex-1 md:flex-none"
               >
                 <Download className="h-4 w-4 mr-2" />
                 {t("hero.Download")} {lang.toUpperCase()}

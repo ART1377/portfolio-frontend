@@ -1,22 +1,11 @@
 "use client";
 
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardTitle,
-} from "@/app/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/app/components/ui/card";
 import { Input } from "@/app/components/ui/input";
 import { Textarea } from "@/app/components/ui/textarea";
 import { AddButton, Button } from "@/app/components/ui/button";
-import {
-  FileText,
-  Lightbulb,
-  Star,
-  Minus,
-  Save,
-  Loader2,
-} from "lucide-react";
+import { FileText, Lightbulb, Star, Minus, Save, Loader2 } from "lucide-react";
 import { useAboutForm } from "../hooks/useAboutForm";
 import AdminSectionHeader from "../../admin-section-header";
 import { useTranslation } from "react-i18next";
@@ -52,9 +41,9 @@ export default function AboutEditor() {
         <AdminSectionHeader title={t("hero.Title")} />
 
         {/* Card Content */}
-        <CardContent className="space-y-8 p-4 md:p-6">
+        <CardContent className="space-y-12 p-3 md:p-6">
           {/* Description Sub-Card */}
-          <div className="p-4 bg-white/50 dark:bg-slate-700/40 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
+          <div className="space-y-4">
             <CardTitle className="flex items-center gap-3 text-lg text-slate-800 dark:text-slate-200 mb-2">
               <div className="p-2 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg text-white">
                 <FileText className="w-5 h-5" />
@@ -64,13 +53,14 @@ export default function AboutEditor() {
 
             {form.description.map((desc, i) => (
               <div key={i} className="space-y-2">
-                <Input
+                <Textarea
                   value={desc}
                   onChange={(e) =>
                     updateArrayItem("description", i, e.target.value)
                   }
                   placeholder={t("about.EnterDescription")}
                   className="w-full border-slate-200 dark:bg-slate-700 dark:text-slate-100 dark:border-slate-600"
+                  rows={3} // optional, set default height
                 />
                 <Button
                   variant="outline"
@@ -87,7 +77,7 @@ export default function AboutEditor() {
           </div>
 
           {/* Skills Sub-Card */}
-          <div className="p-4 bg-white/50 dark:bg-slate-700/40 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
+          <div className="space-y-4">
             <CardTitle className="flex items-center gap-3 text-lg text-slate-800 dark:text-slate-200 mb-2">
               <div className="p-2 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg text-white">
                 <Star className="w-5 h-5" />
@@ -118,7 +108,7 @@ export default function AboutEditor() {
           </div>
 
           {/* Features Sub-Card */}
-          <div className="p-4 bg-white/50 dark:bg-slate-700/40 rounded-lg border border-gray-200 dark:border-slate-600 space-y-4 shadow-sm">
+          <div className="space-y-4">
             <CardTitle className="flex items-center gap-3 text-lg text-slate-800 dark:text-slate-200 mb-2">
               <div className="p-2 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg text-white">
                 <Lightbulb className="w-5 h-5" />
@@ -129,7 +119,7 @@ export default function AboutEditor() {
             {form.features.map((feature, i) => (
               <div
                 key={i}
-                className="p-4 border border-slate-200 rounded-lg bg-white/50 dark:bg-slate-700/40 dark:border-slate-600 space-y-3"
+                className="space-y-3"
               >
                 <Input
                   value={feature.title}
@@ -174,11 +164,11 @@ export default function AboutEditor() {
             variant={"gradient"}
             onClick={handleSave}
             disabled={isPending}
+            isLoading={isPending}
             className="w-full"
           >
             {isPending ? (
               <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 {t("about.SavingChanges")}
               </>
             ) : (

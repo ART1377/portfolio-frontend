@@ -11,6 +11,7 @@ import { Save, Loader2 } from "lucide-react";
 import ExperienceSection from "./experience";
 import EducationSection from "./education";
 import CourseSection from "./course";
+import { ExperienceData } from "@/app/types/shared/experience/experience";
 
 export default function ExperienceEditor() {
   const {
@@ -21,6 +22,7 @@ export default function ExperienceEditor() {
     handleAddItem,
     handleRemoveItem,
     handleSave,
+    moveItem,
   } = useExperienceForm();
 
   const { t } = useTranslation("dashboard");
@@ -39,6 +41,9 @@ export default function ExperienceEditor() {
             onChange={handleChange}
             onAdd={handleAddItem}
             onRemove={handleRemoveItem}
+            onMove={(key, from, to) =>
+              moveItem(key as keyof ExperienceData, from, to)
+            }
           />
 
           <EducationSection

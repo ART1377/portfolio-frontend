@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import toast from "react-hot-toast";
@@ -14,7 +16,6 @@ export function useSkillsEditor() {
   const { lang } = useLang();
   const { t } = useTranslation("dashboard");
   const { token } = useAuth();
-  const [saving, setSaving] = useState(false);
 
   const { data, error, isLoading, mutate } = useSWR<SkillCategory[]>(
     () => `/skills?lang=${lang}`,
@@ -22,6 +23,7 @@ export function useSkillsEditor() {
   );
 
   const [skillsData, setSkillsData] = useState<SkillCategory[] | null>(null);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (data) setSkillsData(JSON.parse(JSON.stringify(data)));
@@ -53,11 +55,8 @@ export function useSkillsEditor() {
     const updated = [...skillsData];
     const skill = updated[catIdx].skills[skillIdx];
 
-    if (key === "level" && typeof value === "number") {
-      skill[key] = value;
-    } else if (key === "name" && typeof value === "string") {
-      skill[key] = value;
-    }
+    if (key === "level" && typeof value === "number") skill[key] = value;
+    if (key === "name" && typeof value === "string") skill[key] = value;
 
     setSkillsData(updated);
   };
@@ -87,17 +86,38 @@ export function useSkillsEditor() {
     setSkillsData(updated);
   };
 
+  // Move category up/down
+  const moveCategory = (fromIndex: number, toIndex: number) => {
+    if (!skillsData || toIndex < 0 || toIndex >= skillsData.length) return;
+    const updated = [...skillsData];
+    const [moved] = updated.splice(fromIndex, 1);
+    updated.splice(toIndex, 0, moved);
+    setSkillsData(updated);
+  };
+
+  // Move skill up/down
+  const moveSkill = (catIdx: number, skillIdx: number, newIndex: number) => {
+    if (!skillsData) return;
+    const skills = [...skillsData[catIdx].skills];
+    if (newIndex < 0 || newIndex >= skills.length) return;
+    const [moved] = skills.splice(skillIdx, 1);
+    skills.splice(newIndex, 0, moved);
+    const updated = [...skillsData];
+    updated[catIdx].skills = skills;
+    setSkillsData(updated);
+  };
+
   const handleSave = async () => {
     if (!skillsData) return;
     try {
-      setSaving(true); // start loading
+      setSaving(true);
       await updateSkillsData(skillsData, lang as Lang, token as string);
       mutate(skillsData, false);
       toast.success(t("skills.successUpdate"));
     } catch {
       toast.error(t("skills.errorUpdate"));
     } finally {
-      setSaving(false); // stop loading
+      setSaving(false);
     }
   };
 
@@ -105,13 +125,15 @@ export function useSkillsEditor() {
     skillsData,
     isLoading,
     error,
+    saving,
     handleCategoryChange,
     handleSkillChange,
     addCategory,
     addSkill,
     removeCategory,
     removeSkill,
+    moveCategory,
+    moveSkill,
     handleSave,
-    saving,
   };
 }

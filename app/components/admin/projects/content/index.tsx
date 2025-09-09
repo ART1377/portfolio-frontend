@@ -14,6 +14,8 @@ import {
   Code2,
   ExternalLink,
   Github,
+  ArrowDown,
+  ArrowUp,
 } from "lucide-react";
 import AdminSectionHeader from "../../admin-section-header";
 import { useProjectsEditor } from "../hooks/useProjectsEditor";
@@ -31,7 +33,7 @@ export default function ProjectsEditor() {
     removeProject,
     handleSave,
     isLoading,
-    error,
+    error,moveProject,
   } = useProjectsEditor();
 
   const { t } = useTranslation("dashboard");
@@ -64,16 +66,15 @@ export default function ProjectsEditor() {
     <section className="section-container my-10">
       <Card className="max-w-5xl mx-auto">
         <AdminSectionHeader title={t("projects.Title")} />
-        <CardContent className="space-y-8">
+        <CardContent className="space-y-12 p-3 md:p-6">
           {projects.map((project, idx) => {
             const baseId = `project-${idx}`;
             return (
-              <Card
-                key={idx}
-                className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-teal-50/50 to-cyan-50/50 dark:from-teal-950/20 dark:to-cyan-950/20"
-              >
-                <CardHeader className="border-b border-primary/20 dark:border-primary/20">
-                  <div className="flex items-center justify-between">
+              <Card key={idx} className="overflow-hidden border-0">
+               
+
+                <CardHeader className="border-b border-primary/20 dark:border-primary/20 p-0 pb-3">
+                  <div className="flex items-center justify-between flex-wrap-reverse">
                     <div className="flex items-center gap-3">
                       <div className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-primary/30">
                         <Code2 className="h-5 w-5 text-primary dark:text-primary" />
@@ -82,6 +83,21 @@ export default function ProjectsEditor() {
                         {t("projects.Project")} {idx + 1}
                       </h3>
                     </div>
+                    <div className="flex gap-1 ms-auto">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => moveProject(idx, idx - 1)}
+                      >
+                        <ArrowUp className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => moveProject(idx, idx + 1)}
+                      >
+                        <ArrowDown className="h-4 w-4" />
+                      </Button>
                     <Button
                       variant="ghost"
                       size="sm"
@@ -90,10 +106,11 @@ export default function ProjectsEditor() {
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
+                    </div>
                   </div>
                 </CardHeader>
 
-                <CardContent className="p-6 space-y-6">
+                <CardContent className="p-0 pt-4 space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-4">
                       {/* Title */}

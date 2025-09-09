@@ -66,6 +66,25 @@ export function useExperienceForm() {
     setFormData(updated);
   };
 
+  // Add these functions inside useExperienceForm
+
+  // Move item up/down within a section
+  const moveItem = <K extends keyof ExperienceData>(
+    key: K,
+    fromIndex: number,
+    toIndex: number
+  ) => {
+    if (!formData) return;
+    const section = [...(formData[key] as any)];
+    if (toIndex < 0 || toIndex >= section.length) return;
+
+    const [moved] = section.splice(fromIndex, 1);
+    section.splice(toIndex, 0, moved);
+
+    const updated = { ...formData, [key]: section };
+    setFormData(updated);
+  };
+
   const handleSave = async () => {
     if (!formData) return;
     try {
@@ -85,5 +104,6 @@ export function useExperienceForm() {
     handleAddItem,
     handleRemoveItem,
     handleSave,
+    moveItem,
   };
 }

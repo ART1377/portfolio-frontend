@@ -7,18 +7,25 @@ import { Label } from "@/app/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/app/components/ui/card";
 import { useTranslation } from "react-i18next";
 import ChipsInput from "@/app/components/chips-input";
-import { Briefcase, Trash2, Calendar, FileText } from "lucide-react";
+import { Briefcase, Trash2, Calendar, FileText, ArrowDown, ArrowUp } from "lucide-react";
+import { ExperienceData } from "@/app/types/shared/experience/experience";
 
 export default function ExperienceSection({
   data,
   onChange,
   onAdd,
   onRemove,
+  onMove,
 }: {
   data: any[];
   onChange: Function;
   onAdd: Function;
   onRemove: Function;
+  onMove: <K extends keyof ExperienceData>(
+    key: K,
+    from: number,
+    to: number
+  ) => void;
 }) {
   const { t } = useTranslation("dashboard");
 
@@ -33,33 +40,46 @@ export default function ExperienceSection({
         </h3>
       </div>
 
-      <div className="grid gap-4">
+      <div className="grid gap-12">
         {data.map((item, idx) => {
           const baseId = `experience-${idx}`;
           return (
-            <Card
-              key={idx}
-              className="relative overflow-hidden border-0 bg-gradient-to-br from-blue-50/50 to-indigo-50/50 dark:from-blue-950/20 dark:to-indigo-950/20 shadow-sm hover:shadow-md transition-all duration-200"
-            >
-              <CardHeader className="pb-4">
-                <div className="flex items-center justify-between">
+            <Card key={idx} className="relative overflow-hidden border-0">
+              <CardHeader className="pb-4 p-0">
+                <div className="flex items-center justify-between pb-4 flex-wrap-reverse">
                   <div className="flex items-center gap-2">
                     <Briefcase className="h-4 w-4 text-blue-600 dark:text-indigo-400" />
                     <span className="text-sm font-medium text-blue-700 dark:text-indigo-300">
                       {t("experience.Experience")} #{idx + 1}
                     </span>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => onRemove("experiences", idx)}
-                    className="h-8 w-8 p-0 text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                  <div className="flex gap-1 ms-auto">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onMove("experiences", idx, idx - 1)}
+                    >
+                      <ArrowUp className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onMove("experiences", idx, idx + 1)}
+                    >
+                      <ArrowDown className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => onRemove("experiences", idx)}
+                      className="text-red-500"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="p-0 space-y-4">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label

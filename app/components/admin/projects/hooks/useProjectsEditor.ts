@@ -1,4 +1,3 @@
-// hooks/useProjectsEditor.ts
 "use client";
 
 import { useEffect, useState } from "react";
@@ -52,7 +51,7 @@ export function useProjectsEditor() {
     setProjects((prev) => [
       ...(prev || []),
       {
-        id: "new", // Use "new" for frontend-created projects that don't have DB ID yet
+        id: "new",
         title: "New Project",
         description: "",
         image: "",
@@ -67,6 +66,15 @@ export function useProjectsEditor() {
     if (!projects) return;
     const updated = [...projects];
     updated.splice(index, 1);
+    setProjects(updated);
+  };
+
+  // Move project up/down
+  const moveProject = (fromIndex: number, toIndex: number) => {
+    if (!projects || toIndex < 0 || toIndex >= projects.length) return;
+    const updated = [...projects];
+    const [moved] = updated.splice(fromIndex, 1);
+    updated.splice(toIndex, 0, moved);
     setProjects(updated);
   };
 
@@ -89,5 +97,6 @@ export function useProjectsEditor() {
     handleSave,
     addProject,
     removeProject,
+    moveProject,
   };
 }

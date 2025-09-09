@@ -1,9 +1,8 @@
-"use client";
+'use client'
 
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Card, CardContent } from "@/app/components/ui/card";
-import { Badge } from "@/app/components/ui/badge";
 import {
   Plus,
   X,
@@ -15,6 +14,8 @@ import {
   Database,
   Globe,
   Target,
+  ArrowUp,
+  ArrowDown,
 } from "lucide-react";
 import SkillsEditorSkeleton from "../skeleton";
 import { useSkillsEditor } from "../hooks/useSkillsEditor";
@@ -36,14 +37,16 @@ export default function SkillsEditor() {
     skillsData,
     isLoading,
     error,
+    saving,
     handleCategoryChange,
     handleSkillChange,
     addCategory,
     addSkill,
     removeCategory,
     removeSkill,
+    moveCategory,
+    moveSkill,
     handleSave,
-    saving,
   } = useSkillsEditor();
 
   const { t } = useTranslation("dashboard");
@@ -56,7 +59,6 @@ export default function SkillsEditor() {
       <Card className="overflow-hidden border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 dark:from-slate-800 dark:to-slate-700/50 mx-auto max-w-5xl">
         <AdminSectionHeader title={t("skills.title")} />
 
-        {/* Card Content: Categories */}
         <CardContent className="space-y-12 p-4 md:p-6">
           {skillsData.map((category, catIdx) => {
             const IconComponent =
@@ -65,8 +67,8 @@ export default function SkillsEditor() {
 
             return (
               <div key={catIdx} className="rounded-lg border gap-y-4">
-                {/* Sub-header for Category */}
-                <div className="flex items-center justify-between mb-4">
+                {/* Category header */}
+                <div className="flex items-center justify-between mb-4 flex-wrap-reverse">
                   <div className="flex items-center gap-3">
                     <div className="p-2 bg-primary-gradient rounded-lg text-white">
                       <IconComponent className="w-5 h-5" />
@@ -79,14 +81,31 @@ export default function SkillsEditor() {
                       className="text-lg font-semibold border-0 bg-transparent p-0 h-auto focus-visible:ring-0 text-foreground"
                     />
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => removeCategory(catIdx)}
-                    className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+
+                  <div className="flex gap-1 ms-auto">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => moveCategory(catIdx, catIdx - 1)}
+                    >
+                      <ArrowUp className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => moveCategory(catIdx, catIdx + 1)}
+                    >
+                      <ArrowDown className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => removeCategory(catIdx)}
+                      className="text-red-500"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Skills */}
@@ -96,7 +115,7 @@ export default function SkillsEditor() {
                       key={skillIdx}
                       className="p-3 bg-gradient-to-r from-gray-50 to-white dark:from-slate-900 dark:to-slate-800 rounded-lg border border-gray-100 dark:border-slate-600"
                     >
-                      <div className="flex items-center gap-4 mb-3">
+                      <div className="flex flex-wrap-reverse items-center gap-2 mb-3">
                         <Input
                           value={skill.name}
                           onChange={(e) =>
@@ -108,30 +127,48 @@ export default function SkillsEditor() {
                             )
                           }
                           placeholder={t("skills.skillName")}
-                          className="flex-1 bg-background text-foreground min-w-16"
+                          className="flex-1 bg-background text-foreground min-w-24"
                         />
-                        <div className="flex items-center gap-2">
-                          <Input
-                            type="number"
-                            value={skill.level}
-                            onChange={(e) =>
-                              handleSkillChange(
-                                catIdx,
-                                skillIdx,
-                                "level",
-                                +e.target.value
-                              )
+                        <Input
+                          type="number"
+                          value={skill.level}
+                          onChange={(e) =>
+                            handleSkillChange(
+                              catIdx,
+                              skillIdx,
+                              "level",
+                              +e.target.value
+                            )
+                          }
+                          placeholder={t("skills.skillLevel")}
+                          min={0}
+                          max={100}
+                          className="w-16 bg-background text-foreground"
+                        />
+                        <div className="flex gap-1 ms-auto">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() =>
+                              moveSkill(catIdx, skillIdx, skillIdx - 1)
                             }
-                            placeholder={t("skills.skillLevel")}
-                            min={0}
-                            max={100}
-                            className="w-16 bg-background text-foreground"
-                          />
+                          >
+                            <ArrowUp className="w-4 h-4" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() =>
+                              moveSkill(catIdx, skillIdx, skillIdx + 1)
+                            }
+                          >
+                            <ArrowDown className="w-4 h-4" />
+                          </Button>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => removeSkill(catIdx, skillIdx)}
-                            className="text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950"
+                            className="text-red-500"
                           >
                             <X className="w-4 h-4" />
                           </Button>
@@ -153,7 +190,7 @@ export default function SkillsEditor() {
                   <Button
                     variant="outline"
                     onClick={() => addSkill(catIdx)}
-                    className="w-full border-dashed border-2 border-gray-300 dark:border-gray-600 hover:border-primary/40 dark:hover:border-primary hover:bg-primary/20 dark:hover:bg-primary/20 text-primary dark:text-gray-300 hover:text-primary dark:hover:text-primary"
+                    className="w-full border-dashed border-2 border-gray-300"
                   >
                     <Plus className="w-4 h-4 mr-2" />
                     {t("skills.addSkill")}
@@ -164,27 +201,22 @@ export default function SkillsEditor() {
           })}
         </CardContent>
 
-        {/* Footer Buttons */}
+        {/* Footer */}
         <CardContent className="flex flex-wrap gap-4 justify-center pt-6 border-t border-border/50">
-          <Button
-            onClick={addCategory}
-            variant="outline"
-            className="border-dashed border-2 border-primary dark:border-primary hover:border-primary dark:hover:text-primary hover:bg-primary/20 dark:hover:bg-primary/20 text-primary dark:text-primary bg-transparent hover:text-primary flex-1"
-          >
+          <Button onClick={addCategory} variant="outline" className="flex-1">
             <Plus className="w-4 h-4 mr-2" />
             {t("skills.addCategory")}
           </Button>
 
           <Button
-            variant={"gradient"}
+            variant="gradient"
             onClick={handleSave}
-            disabled={isLoading}
-            className="px-8 flex-1"
+            disabled={saving}
             isLoading={saving}
+            className="flex-1"
           >
-            {isLoading ? (
+            {saving ? (
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 {t("skills.saving")}
               </div>
             ) : (

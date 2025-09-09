@@ -31,10 +31,8 @@ export default function ContactEditor() {
 
   return (
     <section className="section-container my-10">
-      <div className="max-w-5xl mx-auto space-y-8 p-6">
-        <AdminSectionHeader
-          title={t("contact.EditContactInformation")}
-        />
+      <div className="max-w-5xl mx-auto space-y-8">
+        <AdminSectionHeader title={t("contact.EditContactInformation")} />
         <div className="text-center space-y-2">
           <p className="text-muted-foreground">
             {t("contact.UpdateContactInfoDescription")}
@@ -44,7 +42,7 @@ export default function ContactEditor() {
         <div className="grid gap-6 md:grid-cols-2">
           {/* Contact Information Card */}
           <Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20">
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-4 p-3 md:p-6">
               <div className="flex items-center gap-2">
                 <div className="p-2 rounded-lg bg-primary/20">
                   <User className="h-5 w-5 text-primary" />
@@ -54,7 +52,7 @@ export default function ContactEditor() {
                 </h2>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-6 p-3 md:p-6">
               <div className="space-y-2">
                 <Label
                   htmlFor="email"
@@ -110,7 +108,7 @@ export default function ContactEditor() {
 
           {/* Social Links Card */}
           <Card className="border-0 shadow-lg bg-gradient-to-br from-background to-muted/20">
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-4 p-3 md:p-6">
               <div className="flex items-center gap-2">
                 <div className="p-2 rounded-lg bg-primary/20">
                   <Globe className="h-5 w-5 text-primary" />
@@ -120,7 +118,7 @@ export default function ContactEditor() {
                 </h2>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-6 p-3 md:p-6">
               <div className="space-y-2">
                 <Label
                   htmlFor="social.github"
@@ -176,7 +174,7 @@ export default function ContactEditor() {
         </div>
 
         <Card className="border-0 shadow-lg">
-          <CardContent className="pt-6">
+          <CardContent className="pt-6 p-0">
             <Button
               onClick={handleSave}
               className="w-full h-12 text-base font-medium bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-200 shadow-lg hover:shadow-xl"

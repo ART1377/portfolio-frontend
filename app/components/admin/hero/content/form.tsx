@@ -37,13 +37,13 @@ export default function HeroForm({
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Personal Information */}
       <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
-        <CardHeader>
+        <CardHeader className="p-3 md:p-6">
           <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
             <User className="h-5 w-5 text-[hsl(var(--primary))]" />
             {t("hero.PersonalInfo")}
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 p-3 md:p-6">
           <div>
             <Label>{t("hero.Name")}</Label>
             <Input
@@ -70,13 +70,13 @@ export default function HeroForm({
 
       {/* Professional Info */}
       <Card className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] shadow-lg">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]">
+        <CardHeader className="p-3 md:p-6">
+          <CardTitle className="flex items-center gap-2 text-[hsl(var(--foreground))]]">
             <Briefcase className="h-5 w-5 text-[hsl(var(--primary))]" />
             {t("hero.ProfessionalDetails")}
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 p-3 md:p-6">
           <div>
             <Label>{t("hero.Roles")}</Label>
             <Input
@@ -101,8 +101,8 @@ export default function HeroForm({
 
       {/* Save */}
       <div className="lg:col-span-2">
-        <Button onClick={onSave} disabled={isPending} className="w-full">
-          {isPending ? t("hero.Saving") : t("hero.Save")}
+        <Button onClick={onSave} disabled={isPending} isLoading={isPending} className="w-full">
+          {isPending ? t("hero.Save") : t("hero.Save")}
         </Button>
       </div>
     </div>
