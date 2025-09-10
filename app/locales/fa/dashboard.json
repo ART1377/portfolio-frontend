@@ -85,6 +85,7 @@
     "Persian": "فارسی",
     "Resume": "رزومه",
     "Upload": "آپلود",
+    "Uploading": "درحال بارگذاری",
     "Download": "دانلود",
     "UploadResumeSuccess": "رزومه {{lang}} با موفقیت آپلود شد.",
     "UploadResumeError": "آپلود رزومه {{lang}} انجام نشد.",

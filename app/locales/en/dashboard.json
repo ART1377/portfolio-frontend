@@ -85,6 +85,7 @@
     "Persian": "Persian",
     "Resume": "Resume",
     "Upload": "Upload",
+    "Uploading": "Uploading",
     "Download": "Download",
     "UploadResumeSuccess": "{{lang}} resume uploaded successfully.",
     "UploadResumeError": "Failed to upload {{lang}} resume.",
