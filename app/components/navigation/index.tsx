@@ -42,7 +42,9 @@ export function Navigation() {
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
       setActiveSection(id);
-      setIsOpen(false); // close menu on mobile
+      // setIsOpen(false); // close menu on mobile
+
+      setTimeout(() => setIsOpen(false), 1500);
     }
   };
 
