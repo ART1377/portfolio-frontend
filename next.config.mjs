@@ -16,7 +16,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "portfolio-backend-production-5b10.up.railway.app",
+        hostname: "portfolio-backend-1ons.onrender.com",
         port: "", // leave empty for default
         pathname: "/api/**",
       },
