@@ -37,7 +37,7 @@ export default function ExperienceCard({ exp }: { exp: Experience }) {
           transformStyle: "preserve-3d",
         }}
       >
-        <CardHeader className="pb-4">
+        <CardHeader className="!pb-2 md:!pb-0">
           <div className="flex justify-between items-start">
             <div>
               <CardTitle className="text-xl">{exp.title}</CardTitle>

@@ -44,7 +44,7 @@ const EducationCard = ({ edu }: Props) => {
         transformStyle: "preserve-3d",
       }}
     >
-      <CardHeader className="pb-4">
+      <CardHeader className="!pb-2 md:!pb-0">
         <div className="flex justify-between items-start">
           <div>
             <CardTitle className="text-xl">{edu.degree}</CardTitle>
@@ -57,7 +57,7 @@ const EducationCard = ({ edu }: Props) => {
           </Badge>
         </div>
       </CardHeader>
-      <CardContent >
+      <CardContent>
         <p className="text-muted-foreground">{edu.description}</p>
       </CardContent>
     </Card>
