@@ -55,6 +55,12 @@ export default function ProjectsEditor() {
   const { t } = useTranslation("dashboard");
   const [newTech, setNewTech] = useState<{ [key: number]: string }>({});
 
+  // at the top of ProjectsEditor component
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
   const addTechnology = (idx: number) => {
     const tech = newTech[idx]?.trim();
     if (!tech || !projects) return;
@@ -212,12 +218,7 @@ export default function ProjectsEditor() {
                     </Label>
 
                     <DndContext
-                      sensors={useSensors(
-                        useSensor(PointerSensor),
-                        useSensor(KeyboardSensor, {
-                          coordinateGetter: sortableKeyboardCoordinates,
-                        })
-                      )}
+                      sensors={sensors}
                       collisionDetection={closestCenter}
                       onDragEnd={({ active, over }) => {
                         if (!over || active.id === over.id) return;
