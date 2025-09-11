@@ -131,20 +131,26 @@ export default function SkillsEditor() {
                         />
                         <Input
                           type="number"
-                          value={skill.level}
-                          onChange={(e) =>
+                          value={
+                            skill.level === null || skill.level === undefined
+                              ? ""
+                              : skill.level
+                          }
+                          onChange={(e) => {
+                            const val = e.target.value;
                             handleSkillChange(
                               catIdx,
                               skillIdx,
                               "level",
-                              +e.target.value
-                            )
-                          }
+                              val === "" ? "" : Number(val) // allow empty
+                            );
+                          }}
                           placeholder={t("skills.skillLevel")}
                           min={0}
                           max={100}
                           className="w-16 bg-background text-foreground"
                         />
+
                         <div className="flex gap-1 ms-auto">
                           <Button
                             variant="ghost"
