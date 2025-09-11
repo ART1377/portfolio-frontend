@@ -24,6 +24,21 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AddButton } from "@/app/components/ui/button"; // primary AddButton
 import ProjectsEditorSkeleton from "../skeleton";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { SortableItem } from "./sortable-item";
 
 export default function ProjectsEditor() {
   const {
@@ -33,7 +48,8 @@ export default function ProjectsEditor() {
     removeProject,
     handleSave,
     isLoading,
-    error,moveProject,
+    error,
+    moveProject,
   } = useProjectsEditor();
 
   const { t } = useTranslation("dashboard");
@@ -71,8 +87,6 @@ export default function ProjectsEditor() {
             const baseId = `project-${idx}`;
             return (
               <Card key={idx} className="overflow-hidden border-0">
-               
-
                 <CardHeader className="border-b border-primary/20 dark:border-primary/20 p-0 pb-3">
                   <div className="flex items-center justify-between flex-wrap-reverse">
                     <div className="flex items-center gap-3">
@@ -98,14 +112,14 @@ export default function ProjectsEditor() {
                       >
                         <ArrowDown className="h-4 w-4" />
                       </Button>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => removeProject(idx)}
-                      className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => removeProject(idx)}
+                        className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
                 </CardHeader>
@@ -191,22 +205,48 @@ export default function ProjectsEditor() {
                   </div>
 
                   {/* Technologies */}
+                  {/* Technologies */}
                   <div className="space-y-3">
                     <Label className="text-sm font-medium">
                       {t("projects.Technologies")}
                     </Label>
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {project.technologies.map((tech, techIdx) => (
-                        <Badge key={techIdx} variant="secondary">
-                          {tech}
-                          <button
-                            onClick={() => removeTechnology(idx, techIdx)}
-                          >
-                            <X className="h-3 w-3 ml-1" />
-                          </button>
-                        </Badge>
-                      ))}
-                    </div>
+
+                    <DndContext
+                      sensors={useSensors(
+                        useSensor(PointerSensor),
+                        useSensor(KeyboardSensor, {
+                          coordinateGetter: sortableKeyboardCoordinates,
+                        })
+                      )}
+                      collisionDetection={closestCenter}
+                      onDragEnd={({ active, over }) => {
+                        if (!over || active.id === over.id) return;
+
+                        const updated = arrayMove(
+                          project.technologies,
+                          project.technologies.indexOf(active.id as string),
+                          project.technologies.indexOf(over.id as string)
+                        );
+
+                        handleChange(idx, "technologies", updated);
+                      }}
+                    >
+                      <SortableContext
+                        items={project.technologies}
+                        strategy={verticalListSortingStrategy}
+                      >
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {project.technologies.map((tech, techIdx) => (
+                            <SortableItem
+                              key={tech}
+                              id={tech}
+                              onRemove={() => removeTechnology(idx, techIdx)}
+                            />
+                          ))}
+                        </div>
+                      </SortableContext>
+                    </DndContext>
+
                     <div className="flex gap-2">
                       <Input
                         value={newTech[idx] || ""}
