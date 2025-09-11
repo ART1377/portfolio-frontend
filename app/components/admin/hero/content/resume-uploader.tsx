@@ -113,15 +113,17 @@ export default function ResumeUploader({
                   </>
                 )}
               </Button>
-
               <Button
                 variant="outline"
                 onClick={() => {
                   const link = document.createElement("a");
                   link.href = `${process.env.NEXT_PUBLIC_API_URL}/hero/resume?lang=${lang}`;
+                  link.download = `Alireza-Tahavori-Resume-${lang}.pdf`; // Force download with proper name
                   link.target = "_blank";
                   link.rel = "noopener noreferrer";
+                  document.body.appendChild(link);
                   link.click();
+                  document.body.removeChild(link);
                 }}
                 className="flex-1 md:flex-none"
               >
