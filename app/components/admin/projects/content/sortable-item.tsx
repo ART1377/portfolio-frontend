@@ -21,19 +21,16 @@ export function SortableItem({
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="inline-block"
-    >
-      <Badge
-        variant="secondary"
-        className="flex items-center gap-1 cursor-grab"
-      >
-        {id}
-        <button onClick={onRemove}>
+    <div ref={setNodeRef} style={style} className="inline-block">
+      <Badge variant="secondary" className="flex items-center gap-1">
+        <span className="cursor-grab" {...attributes} {...listeners}>
+          {id}
+        </span>
+        <button
+          type="button"
+          onClick={onRemove}
+          className="ml-1 "
+        >
           <X className="h-3 w-3" />
         </button>
       </Badge>

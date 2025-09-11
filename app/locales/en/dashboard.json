@@ -154,6 +154,7 @@
     "AddProject": "+ Add Project",
     "RemoveProject": "Remove Project",
     "Save": "Save Changes",
+    "Saving": "Saving...",
     "UpdateSuccess": "Projects info updated.",
     "UpdateError": "Failed to update projects info."
   },

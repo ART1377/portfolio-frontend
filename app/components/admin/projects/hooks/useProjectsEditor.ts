@@ -23,6 +23,7 @@ export function useProjectsEditor() {
   );
 
   const [projects, setProjects] = useState<Project[] | null>(null);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (data) setProjects(JSON.parse(JSON.stringify(data)));
@@ -81,11 +82,14 @@ export function useProjectsEditor() {
   const handleSave = async () => {
     if (!projects) return;
     try {
+      setSaving(true);
       await updateProjects(projects, lang as Lang, token as string);
       mutate(projects, false);
       toast.success(t("projects.UpdateSuccess"));
     } catch {
       toast.error(t("projects.UpdateError"));
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -98,5 +102,6 @@ export function useProjectsEditor() {
     addProject,
     removeProject,
     moveProject,
+    saving,
   };
 }

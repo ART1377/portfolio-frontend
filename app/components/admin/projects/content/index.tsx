@@ -50,6 +50,7 @@ export default function ProjectsEditor() {
     isLoading,
     error,
     moveProject,
+    saving,
   } = useProjectsEditor();
 
   const { t } = useTranslation("dashboard");
@@ -70,6 +71,7 @@ export default function ProjectsEditor() {
 
   const removeTechnology = (projectIdx: number, techIdx: number) => {
     if (!projects) return;
+    console.log(projectIdx, techIdx);
     const updated = projects[projectIdx].technologies.filter(
       (_, i) => i !== techIdx
     );
@@ -280,10 +282,13 @@ export default function ProjectsEditor() {
             <Button
               variant="gradient"
               onClick={handleSave}
-              disabled={isLoading}
+              disabled={saving}
+              isLoading={saving}
             >
-              {isLoading ? (
-                "Saving..."
+              {saving ? (
+                <div className="flex items-center gap-2">
+                  {t("projects.Saving")}
+                </div>
               ) : (
                 <>
                   <Save className="h-4 w-4 mr-2" /> {t("projects.Save")}
