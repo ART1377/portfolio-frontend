@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     title: "Alireza Tahavori - Frontend Developer Portfolio",
     description:
       "Explore React projects, frontend apps, and UI/UX case studies.",
-    url: "https://portfolio-frontend-vert-gamma.vercel.app/",
+    url: "https://alireza-tahavori.vercel.app/",
     siteName: "Alireza Tahavori Portfolio",
     images: [
       {
-        url: "https://portfolio-frontend-vert-gamma.vercel.app/preview.png",
+        url: "https://alireza-tahavori.vercel.app/preview.png",
         width: 1200,
         height: 630,
         alt: "Alireza Tahavori Portfolio Preview",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     title: "Alireza Tahavori - Frontend Developer Portfolio",
     description:
       "Frontend development portfolio showcasing React, Next.js, and UI design work.",
-    images: ["https://portfolio-frontend-vert-gamma.vercel.app/preview.png"],
+    images: ["https://alireza-tahavori.vercel.app/preview.png"],
   },
 };
 
