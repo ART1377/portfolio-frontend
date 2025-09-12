@@ -113,27 +113,15 @@ export default function ResumeUploader({
                   </>
                 )}
               </Button>
+
               <Button
                 variant="outline"
-                onClick={async () => {
-                  try {
-                    const response = await fetch(
-                      `${process.env.NEXT_PUBLIC_API_URL}/hero/resume?lang=${lang}`
-                    );
-                    const data = await response.json();
-
-                    if (response.ok && data.downloadUrl) {
-                      // If the API returns a URL, redirect to it
-                      window.open(
-                        data.suggestedUrl || data.downloadUrl,
-                        "_blank"
-                      );
-                    } else {
-                      console.error("Download failed:", data.message);
-                    }
-                  } catch (error) {
-                    console.error("Download error:", error);
-                  }
+                onClick={() => {
+                  const link = document.createElement("a");
+                  link.href = `${process.env.NEXT_PUBLIC_API_URL}/hero/resume?lang=${lang}`;
+                  link.target = "_blank";
+                  link.rel = "noopener noreferrer";
+                  link.click();
                 }}
                 className="flex-1 md:flex-none"
               >
