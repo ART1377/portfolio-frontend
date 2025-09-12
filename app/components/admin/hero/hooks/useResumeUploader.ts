@@ -1,4 +1,3 @@
-// Updated useResumeUploader hook
 import { useState } from "react";
 
 type Lang = "en" | "fa";
@@ -12,11 +11,6 @@ export function useResumeUploader() {
   >({});
 
   const setResumeFile = (lang: Lang, file: File) => {
-    // Validate file type
-    if (file.type !== "application/pdf") {
-      alert("Only PDF files are allowed for resumes");
-      return;
-    }
     setResumeFiles((prev) => ({ ...prev, [lang]: file }));
   };
 
@@ -44,9 +38,6 @@ export function useResumeUploader() {
       xhr.onload = () => {
         if (xhr.status >= 200 && xhr.status < 300) {
           setUploadProgress((prev) => ({ ...prev, [lang]: 100 }));
-          setTimeout(() => {
-            setUploadProgress((prev) => ({ ...prev, [lang]: undefined }));
-          }, 2000);
           resolve();
         } else {
           reject(new Error("Upload failed"));
